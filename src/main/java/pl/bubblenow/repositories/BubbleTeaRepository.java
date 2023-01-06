@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface BubbleTeaRepository extends JpaRepository<BubbleTea, Integer> {
     List<BubbleTea> findAll();
+
+    BubbleTea save(BubbleTea entity);
+
+
 }
