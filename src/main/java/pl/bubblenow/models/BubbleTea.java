@@ -1,4 +1,4 @@
-package pl.bubblenow.model;
+package pl.bubblenow.models;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package pl.bubblenow.model;
+package pl.bubblenow.models;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,32 +1,30 @@
-package pl.bubblenow.model;
+package pl.bubblenow.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "syrup")
+@Table(name = "base")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "bubbleTeas"})
-public class Syrup {
+public class Base {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
 
-    @OneToMany(mappedBy = "syrup", cascade = CascadeType.ALL)
+    private String name;
+    private BigDecimal price;
+
+    @OneToMany(mappedBy = "base", cascade = CascadeType.ALL)
     private List<BubbleTea> bubbleTeas;
 
-    public Syrup() {
+    public Base() {
     }
 
-    public Syrup(int id, String name, List<BubbleTea> bubbleTeas) {
-        this.id = id;
-        this.name = name;
-        this.bubbleTeas = bubbleTeas;
-    }
 
     public List<BubbleTea> getBubbleTeas() {
         return bubbleTeas;
@@ -50,5 +48,13 @@ public class Syrup {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
