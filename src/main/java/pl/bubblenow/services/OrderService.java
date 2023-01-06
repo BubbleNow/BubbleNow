@@ -9,45 +9,25 @@ import java.util.Date;
 
 @Service
 public class OrderService {
-
-    AdditionRepository additionRepository;
-    BaseRepository baseRepository;
-    SizeRepository sizeRepository;
     BubbleTeaRepository bubbleTeaRepository;
-    SyrupRepository syrupRepository;
-    KindRepository kindRepository;
     OrderRepository orderRepository;
 
-    public OrderService(AdditionRepository additionRepository,
-                        BaseRepository baseRepository,
-                        SizeRepository sizeRepository,
-                        BubbleTeaRepository bubbleTeaRepository,
-                        SyrupRepository syrupRepository,
-                        KindRepository kindRepository,
-                        OrderRepository orderRepository) {
-        this.additionRepository = additionRepository;
-        this.baseRepository = baseRepository;
-        this.sizeRepository = sizeRepository;
+    public OrderService(
+            BubbleTeaRepository bubbleTeaRepository,
+            OrderRepository orderRepository
+    ) {
         this.bubbleTeaRepository = bubbleTeaRepository;
-        this.syrupRepository = syrupRepository;
-        this.kindRepository = kindRepository;
         this.orderRepository = orderRepository;
     }
 
     public BigDecimal countPrice(Addition addition, Base base, Size size) {
+        BigDecimal priceAddition = addition == null ?
+                BigDecimal.valueOf(0) :
+                addition.getPrice();
 
-        BigDecimal priceAddition;
-
-        if (addition == null) {
-            priceAddition = BigDecimal.valueOf(0);
-        } else {
-            priceAddition = addition.getPrice();
-        }
-
-        BigDecimal priceBase = base.getPrice();
-        BigDecimal priceSize = size.getPrice();
-
-        return priceAddition.add(priceBase).add(priceSize);
+        return priceAddition
+                .add(base.getPrice())
+                .add(size.getPrice());
     }
 
     public Order create(Addition addition, Syrup syrup, Base base, Size size, Kind kind) {

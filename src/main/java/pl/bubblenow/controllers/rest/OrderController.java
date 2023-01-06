@@ -17,28 +17,13 @@ import java.util.Date;
 public class OrderController {
     OrderRepository orderRepository;
     OrderService orderService;
-    private final SyrupRepository syrupRepository;
-    private final AdditionRepository additionRepository;
-    private final BaseRepository baseRepository;
-    private final SizeRepository sizeRepository;
-    private final KindRepository kindRepository;
-    private final BubbleTeaRepository bubbleTeaRepository;
 
-    public OrderController(OrderRepository orderRepository, OrderService orderService,
-                           SyrupRepository syrupRepository,
-                           AdditionRepository additionRepository,
-                           BaseRepository baseRepository,
-                           SizeRepository sizeRepository,
-                           KindRepository kindRepository,
-                           BubbleTeaRepository bubbleTeaRepository) {
+    public OrderController(
+            OrderRepository orderRepository,
+            OrderService orderService
+    ) {
         this.orderRepository = orderRepository;
         this.orderService = orderService;
-        this.syrupRepository = syrupRepository;
-        this.additionRepository = additionRepository;
-        this.baseRepository = baseRepository;
-        this.sizeRepository = sizeRepository;
-        this.kindRepository = kindRepository;
-        this.bubbleTeaRepository = bubbleTeaRepository;
     }
 
     @GetMapping("/get-price")
@@ -50,14 +35,14 @@ public class OrderController {
         return orderService.countPrice(addition, base, size);
     }
 
-    @PostMapping("/add-Bubble")
+    @PostMapping("/create")
     public Order create(
             @RequestParam(required = false) Addition addition,
             @RequestParam Syrup syrup,
             @RequestParam Base base,
             @RequestParam Size size,
-            @RequestParam Kind kind) {
-
+            @RequestParam Kind kind
+    ) {
         return orderService.create(addition, syrup, base, size, kind);
     }
 
