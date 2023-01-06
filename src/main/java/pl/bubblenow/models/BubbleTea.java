@@ -1,5 +1,6 @@
 package pl.bubblenow.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -31,6 +32,7 @@ public class BubbleTea {
     private Addition addition;
 
     @OneToOne(mappedBy = "bubbleTea")
+    @JsonBackReference
     private Order order;
 
 

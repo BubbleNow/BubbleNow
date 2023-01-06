@@ -14,7 +14,7 @@ public class Kind {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "kind", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "kind")
     private List<BubbleTea> bubbleTeas;
 
     public Kind(int id, String name, List<BubbleTea> bubbleTeas) {

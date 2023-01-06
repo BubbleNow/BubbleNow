@@ -1,5 +1,6 @@
 package pl.bubblenow.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "bubble_tea_id")
+    @JsonManagedReference
     private BubbleTea bubbleTea;
     private Date date;
 
