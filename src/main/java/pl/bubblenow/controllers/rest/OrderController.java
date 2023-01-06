@@ -16,9 +16,5 @@ public class OrderController {
         this.orderRepository = orderRepository;
     }
 
-    @GetMapping(path = {"", "/"})
-    public ResponseEntity<?> index() {
-        return ResponseEntity.ok(orderRepository.findAll());
-    }
 
 }
