@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.rest;
 
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bubblenow.models.*;
@@ -42,26 +43,22 @@ public class OrderController {
 
     @GetMapping("/get-price")
     public BigDecimal getPrice(
-            @RequestParam int sizeId,
-            @RequestParam int baseId,
-            @RequestParam(required = false) Integer additionId
+            @RequestParam Size size,
+            @RequestParam Base base,
+            @RequestParam(required = false) Addition addition
     ) {
-        return orderService.countPrice(additionId, baseId, sizeId);
+        return orderService.countPrice(addition, base, size);
     }
 
     @PostMapping("/add-Bubble")
-    public void createNew(
-            @RequestParam int additionId,
-            @RequestParam int syrupId,
-            @RequestParam int baseId,
-            @RequestParam int sizeId,
-            @RequestParam int kindId) {
+    public Order create(
+            @RequestParam(required = false) Addition addition,
+            @RequestParam Syrup syrup,
+            @RequestParam Base base,
+            @RequestParam Size size,
+            @RequestParam Kind kind) {
 
-        createNew(additionId, syrupId, baseId, sizeId, kindId);
+        return orderService.create(addition, syrup, base, size, kind);
     }
 
-    @GetMapping("/get-latest")
-    public ResponseEntity<?> getLatest(){
-        return ResponseEntity.ok(orderRepository.findTopByOrderByIdDesc());
-    }
 }

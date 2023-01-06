@@ -34,29 +34,23 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public BigDecimal countPrice(Integer additionId, int baseId, int sizeId) {
+    public BigDecimal countPrice(Addition addition, Base base, Size size) {
 
         BigDecimal priceAddition;
 
-        if (additionId == null) {
+        if (addition == null) {
             priceAddition = BigDecimal.valueOf(0);
         } else {
-            priceAddition = additionRepository.findById(additionId.intValue()).getPrice();
+            priceAddition = addition.getPrice();
         }
 
-        BigDecimal priceBase = baseRepository.findById(baseId).getPrice();
-        BigDecimal priceSize = sizeRepository.findById(sizeId).getPrice();
+        BigDecimal priceBase = base.getPrice();
+        BigDecimal priceSize = size.getPrice();
 
         return priceAddition.add(priceBase).add(priceSize);
     }
 
-    public String createNew(int additionId, int syrupId, int baseId, int sizeId, int kindId){
-        Syrup syrup = syrupRepository.findById(syrupId);
-        Addition addition = additionRepository.findById(additionId);
-        Base base = baseRepository.findById(baseId);
-        Size size = sizeRepository.findById(sizeId);
-        Kind kind = kindRepository.findById(kindId);
-
+    public Order create(Addition addition, Syrup syrup, Base base, Size size, Kind kind) {
         BubbleTea bubbleTea = new BubbleTea();
 
         bubbleTea.setAddition(addition);
@@ -67,16 +61,20 @@ public class OrderService {
         bubbleTeaRepository.save(bubbleTea);
 
         Order order = new Order();
-
         order.setDate(new Date());
-        order.setNumber(69);
-        order.setPrice(countPrice(additionId, baseId, sizeId));
+        order.setNumber(getNextNumber());
+        order.setPrice(countPrice(addition, base, size));
+
         order.setBubbleTea(bubbleTea);
         orderRepository.save(order);
 
-        return "Twoje zamówienie otrzymało numer:" + order.getNumber();
+        return order;
     }
 
+    public int getNextNumber() {
+        int latestNumber = orderRepository.findTopByOrderByIdDesc().getNumber();
 
+        return latestNumber >= 100 ? 1 : latestNumber + 1;
+    }
 
 }
