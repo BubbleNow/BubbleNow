@@ -45,6 +45,6 @@ public class EntityController {
         model.addAttribute("sizes", sizeRepository.findAll());
         model.addAttribute("orders", orderRepository.findAll());
 
-        return "entities";
+        return "pages/admin/entities";
     }
 }

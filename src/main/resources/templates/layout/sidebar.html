@@ -1,0 +1,22 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" th:fragment="sidebar" layout:fragment="sidebar">
+    <div class="position-sticky pt-3">
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'home' ? 'active' : ''}" href="/admin">
+                    <i data-feather="home"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'products' ? 'active' : ''}" href="/">
+                    <i data-feather="coffee"></i> Addition
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+</html>
