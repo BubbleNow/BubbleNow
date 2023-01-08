@@ -4,19 +4,29 @@
 
 <div layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dodaj rodzaj</h1>
+        <h1 class="h2">Szczegóły dodatku</h1>
     </div>
 
-    <form th:action="@{/admin/kinds/create}" th:object="${kind}" method="post">
+    <form th:action="@{'/admin/additions/' + ${addition.id}}" th:object="${addition}" method="post">
 
         <div class="mb-3 row">
             <label class="col-form-label col-sm-2 text-sm-end" for="form-name">Nazwa</label>
             <div class="col-sm-3">
-                <input type="text" id="form-name" class="form-control" th:field="*{name}"
-                       th:classappend="${#fields.hasErrors('${kind.name}') ? 'is-invalid' : null}">
+                <input type="text" id="form-name" class="form-control" th:field="*{name}" th:value="*{name}"
+                       th:classappend="${#fields.hasErrors('${addition.name}') ? 'is-invalid' : null}">
                 <div class="invalid-feedback" th:errors="*{name}"></div>
             </div>
             <small class="col-sm-7 text-muted">Proszę wpisać nazwę produktu</small>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2 text-sm-end" for="form-price">Cena</label>
+            <div class="col-sm-3">
+                <input type="text" id="form-price" class="form-control" th:field="*{price}" th:value="*{price}"
+                       th:classappend="${#fields.hasErrors('${addition.price}') ? 'is-invalid' : null}">
+                <div class="invalid-feedback" th:errors="*{price}"></div>
+            </div>
+            <small class="col-sm-7 text-muted">Proszę wpisać nazwę firmy</small>
         </div>
 
         <div class="mb-3 row">
@@ -25,7 +35,7 @@
                     <button type="submit" class="btn btn-primary">Zapisz</button>
                 </div>
                 <div class="d-inline-block">
-                    <a href="/admin/kinds/" class="btn btn-default">Wróć</a>
+                    <a href="/admin/additions" class="btn btn-default">Wróć</a>
                 </div>
             </div>
         </div>

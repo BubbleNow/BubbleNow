@@ -14,6 +14,7 @@
             <th>Id</th>
             <th>Nazwa</th>
             <th>Cena</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,11 @@
             <td th:text="${addition.id}"></td>
             <td th:text="${addition.name}"></td>
             <td th:text="${addition.price}"></td>
+            <td>
+                <ul>
+                    <li><a th:href = "@{'/admin/additions/' + ${addition.id}}">Edytuj</a></li>
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>
