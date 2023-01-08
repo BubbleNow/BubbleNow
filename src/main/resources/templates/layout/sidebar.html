@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" th:fragment="sidebar" layout:fragment="sidebar">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" th:fragment="sidebar"
+     layout:fragment="sidebar">
     <div class="position-sticky pt-3">
 
         <ul class="nav flex-column">
@@ -10,8 +11,33 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:classappend="${context == 'products' ? 'active' : ''}" href="/">
-                    <i data-feather="coffee"></i> Addition
+                <a class="nav-link" th:classappend="${context == 'base' ? 'active' : ''}" href="/admin/bases">
+                    <i data-feather="coffee"></i> Baza
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'addition' ? 'active' : ''}" href="/admin/additions">
+                    <i data-feather="coffee"></i> Dodatki
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'kind' ? 'active' : ''}" href="/admin/kinds">
+                    <i data-feather="coffee"></i> Rodzaj
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'size' ? 'active' : ''}" href="/admin/sizes">
+                    <i data-feather="coffee"></i> Rozmiar
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'syrup' ? 'active' : ''}" href="/admin/syrups">
+                    <i data-feather="coffee"></i> Syrop
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${context == 'order' ? 'active' : ''}" href="/admin/orders">
+                    <i data-feather="coffee"></i> Zamówienia
                 </a>
             </li>
         </ul>

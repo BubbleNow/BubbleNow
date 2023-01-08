@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.bubblenow.repositories.BaseRepository;
 
-@RestController
+@RestController("BaseRestController")
 @RequestMapping(path = "/bases")
 public class BaseController {
 

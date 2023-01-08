@@ -1,8 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
 
-import org.aspectj.weaver.ast.Or;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bubblenow.models.*;
 import pl.bubblenow.repositories.*;
@@ -10,9 +8,9 @@ import pl.bubblenow.services.OrderService;
 
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-@RestController
+
+@RestController("OrderRestController")
 @RequestMapping(path = "/orders")
 public class OrderController {
     OrderRepository orderRepository;

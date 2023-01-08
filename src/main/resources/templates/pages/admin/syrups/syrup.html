@@ -4,20 +4,22 @@
 
 <div layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Products</h1>
-        <a href="/products/create" class="btn btn-primary">Add</a>
+        <h1 class="h2">Bazy</h1>
+        <a href="/products/create/base" class="btn btn-primary">Add</a>
     </div>
 
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Nazwa</th>
-            <th>Firma</th>
+            <th>Smak</th>
         </tr>
         </thead>
         <tbody>
-
+        <tr th:each="syrup : ${syrups}">
+            <td th:text="${syrup.id}"></td>
+            <td th:text="${syrup.name}"></td>
+        </tr>
         </tbody>
     </table>
 </div>

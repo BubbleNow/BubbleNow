@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.bubblenow.repositories.SyrupRepository;
 
-@RestController
+@RestController("SyrupRestController")
 @RequestMapping(path = "/syrups")
 public class SyrupController {
 
