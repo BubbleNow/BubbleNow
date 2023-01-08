@@ -2,6 +2,8 @@ package pl.bubblenow.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 import java.util.List;
@@ -13,6 +15,8 @@ public class Kind {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull(message = "Name is mandatory")
+    @Size(min = 2, max = 45)
     private String name;
     @OneToMany(mappedBy = "kind")
     private List<BubbleTea> bubbleTeas;

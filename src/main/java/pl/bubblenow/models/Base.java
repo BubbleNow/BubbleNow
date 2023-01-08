@@ -3,6 +3,8 @@ package pl.bubblenow.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,8 +17,13 @@ public class Base {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NotNull(message = "Name is mandatory")
+    @Size(min = 2, max = 45)
     private String name;
+    @NotNull
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "100")
+    @Digits(integer = 6, fraction = 2)
     private BigDecimal price;
 
     @OneToMany(mappedBy = "base", cascade = CascadeType.ALL)

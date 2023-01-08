@@ -3,6 +3,7 @@ package pl.bubblenow.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -14,6 +15,9 @@ public class Syrup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
+    @NotNull(message = "Name is mandatory")
+    @jakarta.validation.constraints.Size(min = 2, max = 45)
     private String name;
 
     @OneToMany(mappedBy = "syrup", cascade = CascadeType.ALL)

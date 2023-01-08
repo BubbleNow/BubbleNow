@@ -1,9 +1,14 @@
 package pl.bubblenow.controllers.admin;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.bubblenow.models.Addition;
 import pl.bubblenow.repositories.AdditionRepository;
 
 @Controller
@@ -20,5 +25,24 @@ public class AdditionController {
         model.addAttribute("context", "addition");
         model.addAttribute("additions", additionRepository.findAll());
         return "pages/admin/additions/addition";
+    }
+
+    @GetMapping(path= {"create", "create/"})
+    public String create(Model model){
+        model.addAttribute("context", "addition");
+        model.addAttribute("addition", new Addition());
+
+        return "pages/admin/additions/create";
+    }
+
+    @PostMapping(path = "/create")
+    public String store(@Valid @ModelAttribute("addition")Addition addition, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            this.additionRepository.save(addition);
+
+            return "redirect:/admin/additions";
+        }
+
+        return "pages/admin/additions/create";
     }
 }
