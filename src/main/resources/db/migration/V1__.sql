@@ -6,12 +6,12 @@ CREATE TABLE addition
     CONSTRAINT pk_addition PRIMARY KEY (id)
 );
 
-CREATE TABLE base
+CREATE TABLE milk
 (
     id    INT AUTO_INCREMENT NOT NULL,
     name  VARCHAR(255)       NOT NULL,
     price DECIMAL(10, 2)     NOT NULL,
-    CONSTRAINT pk_base PRIMARY KEY (id)
+    CONSTRAINT pk_milk PRIMARY KEY (id)
 );
 
 CREATE TABLE bubble_tea
@@ -19,7 +19,7 @@ CREATE TABLE bubble_tea
     id          INT AUTO_INCREMENT NOT NULL,
     kind_id     INT                NOT NULL,
     size_id     INT                NOT NULL,
-    base_id     INT                NOT NULL,
+    milk_id     INT                NOT NULL,
     syrup_id    INT                NOT NULL,
     addition_id INT                NULL,
     CONSTRAINT pk_bubble_tea PRIMARY KEY (id)
@@ -62,7 +62,7 @@ ALTER TABLE bubble_tea
         ON UPDATE CASCADE;
 
 ALTER TABLE bubble_tea
-    ADD CONSTRAINT FK_BUBBLE_TEA_ON_BASE FOREIGN KEY (base_id) REFERENCES base (id)
+    ADD CONSTRAINT FK_BUBBLE_TEA_ON_MILK FOREIGN KEY (milk_id) REFERENCES milk (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE;
 

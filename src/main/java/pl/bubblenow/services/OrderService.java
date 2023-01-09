@@ -20,21 +20,21 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public BigDecimal countPrice(Addition addition, Base base, Size size) {
+    public BigDecimal countPrice(Addition addition, Milk milk, Size size) {
         BigDecimal priceAddition = addition == null ?
                 BigDecimal.valueOf(0) :
                 addition.getPrice();
 
         return priceAddition
-                .add(base.getPrice())
+                .add(milk.getPrice())
                 .add(size.getPrice());
     }
 
-    public Order create(Addition addition, Syrup syrup, Base base, Size size, Kind kind) {
+    public Order create(Addition addition, Syrup syrup, Milk milk, Size size, Kind kind) {
         BubbleTea bubbleTea = new BubbleTea();
 
         bubbleTea.setAddition(addition);
-        bubbleTea.setBase(base);
+        bubbleTea.setMilk(milk);
         bubbleTea.setSize(size);
         bubbleTea.setSyrup(syrup);
         bubbleTea.setKind(kind);
@@ -43,7 +43,7 @@ public class OrderService {
         Order order = new Order();
         order.setDate(new Date());
         order.setNumber(getNextNumber());
-        order.setPrice(countPrice(addition, base, size));
+        order.setPrice(countPrice(addition, milk, size));
 
         order.setBubbleTea(bubbleTea);
         orderRepository.save(order);
@@ -52,9 +52,9 @@ public class OrderService {
     }
 
     public int getNextNumber() {
-        int latestNumber = orderRepository.findTopByOrderByIdDesc().getNumber();
+        Order latestOrder = orderRepository.findTopByOrderByIdDesc();
 
-        return latestNumber >= 100 ? 1 : latestNumber + 1;
+        return latestOrder == null ? 1 : latestOrder.getNumber() + 1;
     }
 
 }

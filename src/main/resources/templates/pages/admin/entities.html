@@ -47,7 +47,7 @@
         <td th:text="${bubbleTea.id}"></td>
         <td th:text="${bubbleTea.kind.name}"></td>
         <td th:text="${bubbleTea.size.name}"></td>
-        <td th:text="${bubbleTea.base.name}"></td>
+        <td th:text="${bubbleTea.milk.name}"></td>
         <td th:text="${bubbleTea.syrup.name}"></td>
         <td th:text="${bubbleTea.addition?.name}"></td>
         <td th:text="${bubbleTea.order.id}"></td>
@@ -100,10 +100,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="base : ${bases}">
-        <td th:text="${base.id}"></td>
-        <td th:text="${base.name}"></td>
-        <td th:text="${base.price}"></td>
+    <tr th:each="milk : ${milks}">
+        <td th:text="${milk.id}"></td>
+        <td th:text="${milk.name}"></td>
+        <td th:text="${milk.price}"></td>
     </tr>
     </tbody>
 </table>

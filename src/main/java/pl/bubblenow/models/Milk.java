@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "base")
+@Table(name = "milk")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "bubbleTeas"})
-public class Base {
+public class Milk {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class Base {
     @Digits(integer = 6, fraction = 2)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "base", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "milk", cascade = CascadeType.ALL)
     private List<BubbleTea> bubbleTeas;
 
-    public Base() {
+    public Milk() {
     }
 
 

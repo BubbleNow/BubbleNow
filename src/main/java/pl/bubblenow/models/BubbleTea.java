@@ -20,8 +20,8 @@ public class BubbleTea {
     private Size size;
 
     @ManyToOne
-    @JoinColumn(name = "base_id")
-    private Base base;
+    @JoinColumn(name = "milk_id")
+    private Milk milk;
 
     @ManyToOne
     @JoinColumn(name = "syrup_id")
@@ -36,11 +36,11 @@ public class BubbleTea {
     private Order order;
 
 
-    public BubbleTea(int id, Kind kind, Size size, Base base, Syrup syrup, Addition addition) {
+    public BubbleTea(int id, Kind kind, Size size, Milk milk, Syrup syrup, Addition addition) {
         this.id = id;
         this.kind = kind;
         this.size = size;
-        this.base = base;
+        this.milk = milk;
         this.syrup = syrup;
         this.addition = addition;
     }
@@ -80,12 +80,12 @@ public class BubbleTea {
         this.size = size;
     }
 
-    public Base getBase() {
-        return base;
+    public Milk getMilk() {
+        return milk;
     }
 
-    public void setBase(Base base) {
-        this.base = base;
+    public void setMilk(Milk milk) {
+        this.milk = milk;
     }
 
     public int getId() {

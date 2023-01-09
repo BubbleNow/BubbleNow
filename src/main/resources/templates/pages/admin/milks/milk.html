@@ -4,8 +4,8 @@
 
 <div layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Baza</h1>
-        <a href="/admin/bases/create" class="btn btn-primary">Add</a>
+        <h1 class="h2">Mleko</h1>
+        <a href="/admin/milks/create" class="btn btn-primary">Add</a>
     </div>
 
     <table class="table table-bordered table-striped">
@@ -18,15 +18,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="base : ${bases}">
-            <td th:text="${base.id}"></td>
-            <td th:text="${base.name}"></td>
-            <td th:text="${base.price}"></td>
+        <tr th:each="milk : ${milks}">
+            <td th:text="${milk.id}"></td>
+            <td th:text="${milk.name}"></td>
+            <td th:text="${milk.price}"></td>
             <td>
-                <a class="btn btn-primary btn-sm" th:href="@{'/admin/bases/' + ${base.id} + '/edit'}">
+                <a class="btn btn-primary btn-sm" th:href="@{'/admin/milks/' + ${milk.id} + '/edit'}">
                     <i data-feather="edit-2"></i> Edytuj
                 </a>
-                <form th:action="@{'/admin/bases/' + ${base.id} + '/delete'}" method="POST"
+                <form th:action="@{'/admin/milks/' + ${milk.id} + '/delete'}" method="POST"
                       style="display: inline;">
                     <button type="submit" name="submit" class="btn btn-primary btn-sm">
                         <i data-feather="x-circle"></i> Usuń

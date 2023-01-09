@@ -27,21 +27,21 @@ public class OrderController {
     @GetMapping("/get-price")
     public BigDecimal getPrice(
             @RequestParam Size size,
-            @RequestParam Base base,
+            @RequestParam Milk milk,
             @RequestParam(required = false) Addition addition
     ) {
-        return orderService.countPrice(addition, base, size);
+        return orderService.countPrice(addition, milk, size);
     }
 
     @PostMapping("/create")
     public Order create(
             @RequestParam(required = false) Addition addition,
             @RequestParam Syrup syrup,
-            @RequestParam Base base,
+            @RequestParam Milk milk,
             @RequestParam Size size,
             @RequestParam Kind kind
     ) {
-        return orderService.create(addition, syrup, base, size, kind);
+        return orderService.create(addition, syrup, milk, size, kind);
     }
 
 }

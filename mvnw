@@ -166,20 +166,20 @@ fi
 CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
 
 # traverses directory structure from process work directory to filesystem root
-# first directory with .mvn subdirectory is considered project base directory
-find_maven_basedir() {
+# first directory with .mvn subdirectory is considered project milk directory
+find_maven_milkdir() {
 
   if [ -z "$1" ]
   then
-    echo "Path not specified to find_maven_basedir"
+    echo "Path not specified to find_maven_milkdir"
     return 1
   fi
 
-  basedir="$1"
+  milkdir="$1"
   wdir="$1"
   while [ "$wdir" != '/' ] ; do
     if [ -d "$wdir"/.mvn ] ; then
-      basedir=$wdir
+      milkdir=$wdir
       break
     fi
     # workaround for JBEAP-8937 (on Solaris 10/Sparc)
@@ -188,7 +188,7 @@ find_maven_basedir() {
     fi
     # end of workaround
   done
-  echo "${basedir}"
+  echo "${milkdir}"
 }
 
 # concatenates all lines of a file
@@ -198,8 +198,8 @@ concat_lines() {
   fi
 }
 
-BASE_DIR=`find_maven_basedir "$(pwd)"`
-if [ -z "$BASE_DIR" ]; then
+MILK_DIR=`find_maven_milkdir "$(pwd)"`
+if [ -z "$MILK_DIR" ]; then
   exit 1;
 fi
 
@@ -207,7 +207,7 @@ fi
 # Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
 # This allows using the maven wrapper in projects that prohibit checking in binary data.
 ##########################################################################################
-if [ -r "$BASE_DIR/.mvn/wrapper/maven-wrapper.jar" ]; then
+if [ -r "$MILK_DIR/.mvn/wrapper/maven-wrapper.jar" ]; then
     if [ "$MVNW_VERBOSE" = true ]; then
       echo "Found .mvn/wrapper/maven-wrapper.jar"
     fi
@@ -223,11 +223,11 @@ else
     while IFS="=" read key value; do
       case "$key" in (wrapperUrl) jarUrl="$value"; break ;;
       esac
-    done < "$BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
+    done < "$MILK_DIR/.mvn/wrapper/maven-wrapper.properties"
     if [ "$MVNW_VERBOSE" = true ]; then
       echo "Downloading from: $jarUrl"
     fi
-    wrapperJarPath="$BASE_DIR/.mvn/wrapper/maven-wrapper.jar"
+    wrapperJarPath="$MILK_DIR/.mvn/wrapper/maven-wrapper.jar"
     if $cygwin; then
       wrapperJarPath=`cygpath --path --windows "$wrapperJarPath"`
     fi
@@ -255,25 +255,25 @@ else
         if [ "$MVNW_VERBOSE" = true ]; then
           echo "Falling back to using Java to download"
         fi
-        javaClass="$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.java"
+        javaClass="$MILK_DIR/.mvn/wrapper/MavenWrapperDownloader.java"
         # For Cygwin, switch paths to Windows format before running javac
         if $cygwin; then
           javaClass=`cygpath --path --windows "$javaClass"`
         fi
         if [ -e "$javaClass" ]; then
-            if [ ! -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
+            if [ ! -e "$MILK_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
                 if [ "$MVNW_VERBOSE" = true ]; then
                   echo " - Compiling MavenWrapperDownloader.java ..."
                 fi
                 # Compiling the Java class
                 ("$JAVA_HOME/bin/javac" "$javaClass")
             fi
-            if [ -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
+            if [ -e "$MILK_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
                 # Running the downloader
                 if [ "$MVNW_VERBOSE" = true ]; then
                   echo " - Running MavenWrapperDownloader.java ..."
                 fi
-                ("$JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTBASEDIR")
+                ("$JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTMILKDIR")
             fi
         fi
     fi
@@ -282,11 +282,11 @@ fi
 # End of extension
 ##########################################################################################
 
-export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}
+export MAVEN_PROJECTMILKDIR=${MAVEN_MILKDIR:-"$MILK_DIR"}
 if [ "$MVNW_VERBOSE" = true ]; then
-  echo $MAVEN_PROJECTBASEDIR
+  echo $MAVEN_PROJECTMILKDIR
 fi
-MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTBASEDIR/.mvn/jvm.config") $MAVEN_OPTS"
+MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTMILKDIR/.mvn/jvm.config") $MAVEN_OPTS"
 
 # For Cygwin, switch paths to Windows format before running java
 if $cygwin; then
@@ -296,8 +296,8 @@ if $cygwin; then
     JAVA_HOME=`cygpath --path --windows "$JAVA_HOME"`
   [ -n "$CLASSPATH" ] &&
     CLASSPATH=`cygpath --path --windows "$CLASSPATH"`
-  [ -n "$MAVEN_PROJECTBASEDIR" ] &&
-    MAVEN_PROJECTBASEDIR=`cygpath --path --windows "$MAVEN_PROJECTBASEDIR"`
+  [ -n "$MAVEN_PROJECTMILKDIR" ] &&
+    MAVEN_PROJECTMILKDIR=`cygpath --path --windows "$MAVEN_PROJECTMILKDIR"`
 fi
 
 # Provide a "standardized" way to retrieve the CLI args that will
@@ -310,7 +310,7 @@ WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
 exec "$JAVACMD" \
   $MAVEN_OPTS \
   $MAVEN_DEBUG_OPTS \
-  -classpath "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" \
+  -classpath "$MAVEN_PROJECTMILKDIR/.mvn/wrapper/maven-wrapper.jar" \
   "-Dmaven.home=${M2_HOME}" \
-  "-Dmaven.multiModuleProjectDirectory=${MAVEN_PROJECTBASEDIR}" \
+  "-Dmaven.multiModuleProjectDirectory=${MAVEN_PROJECTMILKDIR}" \
   ${WRAPPER_LAUNCHER} $MAVEN_CONFIG "$@"

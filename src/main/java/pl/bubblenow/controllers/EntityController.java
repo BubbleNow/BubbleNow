@@ -12,7 +12,7 @@ public class EntityController {
 
     private final SyrupRepository syrupRepository;
     private final AdditionRepository additionRepository;
-    private final BaseRepository baseRepository;
+    private final MilkRepository milkRepository;
     private final BubbleTeaRepository bubbleTeaRepository;
     private final KindRepository kindRepository;
     private final SizeRepository sizeRepository;
@@ -20,14 +20,14 @@ public class EntityController {
 
     public EntityController(SyrupRepository syrupRepository,
                             AdditionRepository additionRepository,
-                            BaseRepository baseRepository,
+                            MilkRepository milkRepository,
                             BubbleTeaRepository bubbleTeaRepository,
                             KindRepository kindRepository,
                             SizeRepository sizeRepository,
                             OrderRepository orderRepository) {
         this.syrupRepository = syrupRepository;
         this.additionRepository = additionRepository;
-        this.baseRepository = baseRepository;
+        this.milkRepository = milkRepository;
         this.bubbleTeaRepository = bubbleTeaRepository;
         this.kindRepository = kindRepository;
         this.sizeRepository = sizeRepository;
@@ -39,7 +39,7 @@ public class EntityController {
     public String index(Model model) {
         model.addAttribute("syrups", syrupRepository.findAll());
         model.addAttribute("additions", additionRepository.findAll());
-        model.addAttribute("bases", baseRepository.findAll());
+        model.addAttribute("milks", milkRepository.findAll());
         model.addAttribute("bubbleTeas", bubbleTeaRepository.findAll());
         model.addAttribute("kinds", kindRepository.findAll());
         model.addAttribute("sizes", sizeRepository.findAll());

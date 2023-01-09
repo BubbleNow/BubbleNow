@@ -4,21 +4,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.bubblenow.repositories.BaseRepository;
+import pl.bubblenow.repositories.MilkRepository;
 
-@RestController("BaseRestController")
-@RequestMapping(path = "/bases")
-public class BaseController {
+@RestController("MilkRestController")
+@RequestMapping(path = "/milks")
+public class MilkController {
 
-    BaseRepository baseRepository;
+    MilkRepository milkRepository;
 
-    public BaseController(BaseRepository baseRepository) {
-        this.baseRepository = baseRepository;
+    public MilkController(MilkRepository milkRepository) {
+        this.milkRepository = milkRepository;
     }
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {
-        return ResponseEntity.ok(baseRepository.findAll());
+        return ResponseEntity.ok(milkRepository.findAll());
     }
 
 }
