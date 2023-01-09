@@ -4,11 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.bubblenow.models.Addition;
+import org.springframework.web.bind.annotation.*;
 import pl.bubblenow.models.Kind;
 import pl.bubblenow.repositories.KindRepository;
 
@@ -46,4 +42,27 @@ public class KindController {
 
         return "pages/admin/kinds/create";
     }
+
+    @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
+    public String edit(@PathVariable int id, Model model) {
+
+        model.addAttribute("kind", kindRepository.findById(id));
+        return "pages/admin/kinds/edit";
+    }
+
+    @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
+    public String update(@ModelAttribute("kind") Kind kind, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            kindRepository.save(kind);
+            return "redirect:/admin/kinds";
+        }
+        return "pages/admin/kinds/edit";
+    }
+
+    @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})
+    public String delete(@PathVariable int id) {
+        kindRepository.deleteById(id);
+        return "redirect:/admin/kinds";
+    }
+
 }

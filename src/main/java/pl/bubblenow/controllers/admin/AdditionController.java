@@ -42,20 +42,27 @@ public class AdditionController {
 
         return "pages/admin/additions/create";
     }
-    @GetMapping(path = "/{id}")
-    public String edit(@PathVariable int id, Model model){
+
+    @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
+    public String edit(@PathVariable int id, Model model) {
 
         model.addAttribute("addition", additionRepository.findById(id));
         return "pages/admin/additions/edit";
     }
 
-    @PostMapping(path = "/{id}" )
-    public String update(@ModelAttribute("addition") Addition addition, BindingResult bindingResult){
-        if(!bindingResult.hasErrors()){
+    @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
+    public String update(@ModelAttribute("addition") Addition addition, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
             additionRepository.save(addition);
             return "redirect:/admin/additions";
         }
         return "pages/admin/additions/edit";
+    }
+
+    @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})
+    public String delete(@PathVariable int id){
+        additionRepository.deleteById(id);
+        return "redirect:/admin/additions";
     }
 
 }

@@ -26,7 +26,7 @@ public class Addition {
     @Digits(integer = 6, fraction = 2)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "addition", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "addition")
     private List<BubbleTea> bubbleTeas;
 
     public Addition() {

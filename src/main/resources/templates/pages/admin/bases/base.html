@@ -14,6 +14,7 @@
             <th>Id</th>
             <th>Nazwa</th>
             <th>Cena</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,17 @@
             <td th:text="${base.id}"></td>
             <td th:text="${base.name}"></td>
             <td th:text="${base.price}"></td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{'/admin/bases/' + ${base.id} + '/edit'}">
+                    <i data-feather="edit-2"></i> Edytuj
+                </a>
+                <form th:action="@{'/admin/bases/' + ${base.id} + '/delete'}" method="POST"
+                      style="display: inline;">
+                    <button type="submit" name="submit" class="btn btn-primary btn-sm">
+                        <i data-feather="x-circle"></i> Usuń
+                    </button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

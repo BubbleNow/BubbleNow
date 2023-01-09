@@ -13,12 +13,24 @@
         <tr>
             <th>Id</th>
             <th>Nazwa</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="kind : ${kinds}">
             <td th:text="${kind.id}"></td>
             <td th:text="${kind.name}"></td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{'/admin/kinds/' + ${kind.id} + '/edit'}">
+                    <i data-feather="edit-2"></i> Edytuj
+                </a>
+                <form th:action="@{'/admin/kinds/' + ${kind.id} + '/delete'}" method="POST"
+                      style="display: inline;">
+                    <button type="submit" name="submit" class="btn btn-primary btn-sm">
+                        <i data-feather="x-circle"></i> Usuń
+                    </button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

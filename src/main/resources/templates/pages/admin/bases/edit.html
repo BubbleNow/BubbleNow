@@ -4,26 +4,26 @@
 
 <div layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dodaj dodatek</h1>
+        <h1 class="h2">Edytuj baze</h1>
     </div>
 
-    <form th:action="@{/admin/additions/create}" th:object="${addition}" method="post">
+    <form th:action="@{'/admin/bases/' + ${base.id} + '/edit'}" th:object="${base}" method="post">
 
         <div class="mb-3 row">
             <label class="col-form-label col-sm-2 text-sm-end" for="form-name">Nazwa</label>
             <div class="col-sm-3">
-                <input type="text" id="form-name" class="form-control" th:field="*{name}"
-                       th:classappend="${#fields.hasErrors('${addition.name}') ? 'is-invalid' : null}">
+                <input type="text" id="form-name" class="form-control" th:field="*{name}" th:value="*{name}"
+                       th:classappend="${#fields.hasErrors('${base.name}') ? 'is-invalid' : null}">
                 <div class="invalid-feedback" th:errors="*{name}"></div>
             </div>
-            <small class="col-sm-7 text-muted">Proszę wpisać nazwę</small>
+            <small class="col-sm-7 text-muted">Proszę wpisać nazwę bazy</small>
         </div>
 
         <div class="mb-3 row">
             <label class="col-form-label col-sm-2 text-sm-end" for="form-price">Cena</label>
             <div class="col-sm-3">
-                <input type="text" id="form-price" class="form-control" th:field="*{price}"
-                       th:classappend="${#fields.hasErrors('${addition.price}') ? 'is-invalid' : null}">
+                <input type="text" id="form-price" class="form-control" th:field="*{price}" th:value="*{price}"
+                       th:classappend="${#fields.hasErrors('${base.price}') ? 'is-invalid' : null}">
                 <div class="invalid-feedback" th:errors="*{price}"></div>
             </div>
             <small class="col-sm-7 text-muted">Proszę podać cene</small>
@@ -35,7 +35,7 @@
                     <button type="submit" class="btn btn-primary">Zapisz</button>
                 </div>
                 <div class="d-inline-block">
-                    <a href="/admin/additions" class="btn btn-default">Wróć</a>
+                    <a href="/admin/bases" class="btn btn-default">Wróć</a>
                 </div>
             </div>
         </div>

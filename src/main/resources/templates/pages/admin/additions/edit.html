@@ -4,10 +4,10 @@
 
 <div layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Szczegóły dodatku</h1>
+        <h1 class="h2">Edytuj dodatek</h1>
     </div>
 
-    <form th:action="@{'/admin/additions/' + ${addition.id}}" th:object="${addition}" method="post">
+    <form th:action="@{'/admin/additions/' + ${addition.id} + '/edit'}" th:object="${addition}" method="post">
 
         <div class="mb-3 row">
             <label class="col-form-label col-sm-2 text-sm-end" for="form-name">Nazwa</label>
@@ -16,7 +16,7 @@
                        th:classappend="${#fields.hasErrors('${addition.name}') ? 'is-invalid' : null}">
                 <div class="invalid-feedback" th:errors="*{name}"></div>
             </div>
-            <small class="col-sm-7 text-muted">Proszę wpisać nazwę produktu</small>
+            <small class="col-sm-7 text-muted">Proszę wpisać nazwę</small>
         </div>
 
         <div class="mb-3 row">
@@ -26,7 +26,7 @@
                        th:classappend="${#fields.hasErrors('${addition.price}') ? 'is-invalid' : null}">
                 <div class="invalid-feedback" th:errors="*{price}"></div>
             </div>
-            <small class="col-sm-7 text-muted">Proszę wpisać nazwę firmy</small>
+            <small class="col-sm-7 text-muted">Proszę wpisać cene</small>
         </div>
 
         <div class="mb-3 row">

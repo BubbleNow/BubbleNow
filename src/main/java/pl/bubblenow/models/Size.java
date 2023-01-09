@@ -21,7 +21,7 @@ public class Size {
     private int id;
     @Column(nullable = false)
     @NotNull(message = "Name is mandatory")
-    @jakarta.validation.constraints.Size(min = 2, max = 45)
+    @jakarta.validation.constraints.Size(min = 1, max = 45)
     private String name;
     @Column(nullable = false)
     @NotNull

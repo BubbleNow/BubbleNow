@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface AdditionRepository extends JpaRepository<Addition, Integer> {
     List<Addition> findAll();
     Addition findById(int id);
+    Addition deleteById(int id);
 
 }
