@@ -16,7 +16,7 @@ public class MainController {
         return "pages/main/index";
     }
 
-    @GetMapping(path = "/admin")
+    @GetMapping(path ={ "/admin", "/admin/"})
     public String adminIndex(Model model) {
         model.addAttribute("context", "home");
         return "pages/admin/index";
