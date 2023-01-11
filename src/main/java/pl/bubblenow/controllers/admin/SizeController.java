@@ -21,15 +21,18 @@ public class SizeController {
     public String sizeIndex(Model model) {
         model.addAttribute("context", "size");
         model.addAttribute("sizes", sizeRepository.findAll());
-        return "pages/admin/sizes/size";
+        model.addAttribute("pageTitle", "Lista rozmiarów");
+        return "pages/admin/sizes/list";
     }
 
     @GetMapping(path = {"create", "create/"})
     public String create(Model model) {
         model.addAttribute("context", "size");
         model.addAttribute("size", new Size());
+        model.addAttribute("pageTitle", "Dodaj nowy rozmiar");
+        model.addAttribute("formPath", "/admin/sizes/create");
 
-        return "pages/admin/sizes/create";
+        return "pages/admin/sizes/form";
     }
 
     @PostMapping(path = "/create")
@@ -40,23 +43,24 @@ public class SizeController {
             return "redirect:/admin/sizes";
         }
 
-        return "pages/admin/sizes/create";
+        return "pages/admin/sizes/form";
     }
 
-    @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
-
         model.addAttribute("size", sizeRepository.findById(id));
-        return "pages/admin/sizes/edit";
+        model.addAttribute("pageTitle", "Edytuj rozmiar");
+        model.addAttribute("formPath", "/admin/sizes/" + id + "/edit");
+        return "pages/admin/sizes/form";
     }
 
-    @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String update(@ModelAttribute("size") Size size, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             sizeRepository.save(size);
             return "redirect:/admin/sizes";
         }
-        return "pages/admin/sizes/edit";
+        return "pages/admin/sizes/form";
     }
 
     @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})
