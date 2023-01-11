@@ -31,19 +31,20 @@ public class AdditionController {
         model.addAttribute("context", "addition");
         model.addAttribute("addition", new Addition());
         model.addAttribute("pageTitle", "Dodaj nowy dodatek");
-        model.addAttribute("formPath", "/admin/additions/create");
 
         return "pages/admin/additions/form";
     }
 
     @PostMapping(path = "/create")
-    public String store(@Valid @ModelAttribute("addition") Addition addition, BindingResult bindingResult) {
+    public String store(@Valid @ModelAttribute("addition") Addition addition,
+                        BindingResult bindingResult,
+                        Model model) {
         if (!bindingResult.hasErrors()) {
             this.additionRepository.save(addition);
-
             return "redirect:/admin/additions";
         }
-
+        model.addAttribute("pageTitle", "Dodaj nowy dodatek");
+        model.addAttribute("context", "addition");
         return "pages/admin/additions/form";
     }
 
@@ -52,16 +53,19 @@ public class AdditionController {
         model.addAttribute("context", "addition");
         model.addAttribute("addition", additionRepository.findById(id));
         model.addAttribute("pageTitle", "Edytuj dodatek");
-        model.addAttribute("formPath", "/admin/additions/" + id + "/edit");
         return "pages/admin/additions/form";
     }
 
     @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
-    public String update(@ModelAttribute("addition") Addition addition, BindingResult bindingResult) {
+    public String update(@Valid @ModelAttribute("addition") Addition addition,
+                         BindingResult bindingResult,
+                         Model model) {
         if (!bindingResult.hasErrors()) {
             additionRepository.save(addition);
             return "redirect:/admin/additions";
         }
+        model.addAttribute("pageTitle", "Edytuj dodatek");
+        model.addAttribute("context", "addition");
         return "pages/admin/additions/form";
     }
 

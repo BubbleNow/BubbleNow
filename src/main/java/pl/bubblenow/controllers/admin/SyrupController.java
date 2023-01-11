@@ -28,8 +28,7 @@ public class SyrupController {
 
     @GetMapping(path = {"create", "create/"})
     public String create(Model model) {
-        model.addAttribute("pageTitle", "Dodaj nowy syrop");
-        model.addAttribute("formPath", "/admin/syrups/create");
+        model.addAttribute("pageTitle", "Dodaj syrop");
         model.addAttribute("context", "syrup");
         model.addAttribute("syrup", new Syrup());
 
@@ -37,31 +36,37 @@ public class SyrupController {
     }
 
     @PostMapping(path = "/create")
-    public String store(@Valid @ModelAttribute("syrup") Syrup syrup, BindingResult bindingResult) {
+    public String store(@Valid @ModelAttribute("syrup") Syrup syrup,
+                        BindingResult bindingResult,
+                        Model model) {
         if (!bindingResult.hasErrors()) {
             this.syrupRepository.save(syrup);
 
             return "redirect:/admin/syrups";
         }
-
+        model.addAttribute("context", "syrup");
+        model.addAttribute("pageTitle", "Dodaj syrop");
         return "pages/admin/syrups/form";
     }
 
     @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("pageTitle", "Edytuj syrop");
-        model.addAttribute("formPath", "/admin/syrups/" + id + "/edit");
         model.addAttribute("syrup", syrupRepository.findById(id));
         model.addAttribute("context", "syrup");
         return "pages/admin/syrups/form";
     }
 
     @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
-    public String update(@ModelAttribute("syrup") Syrup syrup, BindingResult bindingResult) {
+    public String update(@Valid @ModelAttribute("syrup") Syrup syrup,
+                         BindingResult bindingResult,
+                         Model model) {
         if (!bindingResult.hasErrors()) {
             syrupRepository.save(syrup);
             return "redirect:/admin/syrups";
         }
+        model.addAttribute("context", "syrup");
+        model.addAttribute("pageTitle", "Edytuj syrop");
         return "pages/admin/syrups/form";
     }
 

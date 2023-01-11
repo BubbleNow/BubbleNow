@@ -7,27 +7,19 @@
         <h1 class="h2" th:text="${pageTitle}"></h1>
     </div>
 
-    <form th:action="${formPath}" th:object="${addition}" method="post">
+    <form th:object="${addition}" method="post">
 
-        <div class="mb-3 row">
-            <label class="col-form-label col-sm-2 text-sm-end" for="form-name">Nazwa</label>
-            <div class="col-sm-3">
-                <input type="text" id="form-name" class="form-control" th:field="*{name}" th:value="*{name}"
-                       th:classappend="${#fields.hasErrors('${addition.name}') ? 'is-invalid' : null}">
-                <div class="invalid-feedback" th:errors="*{name}"></div>
-            </div>
-            <small class="col-sm-7 text-muted">Proszę wpisać nazwę</small>
-        </div>
 
-        <div class="mb-3 row">
-            <label class="col-form-label col-sm-2 text-sm-end" for="form-price">Cena</label>
-            <div class="col-sm-3">
-                <input type="text" id="form-price" class="form-control" th:field="*{price}" th:value="*{price}"
-                       th:classappend="${#fields.hasErrors('${addition.price}') ? 'is-invalid' : null}">
-                <div class="invalid-feedback" th:errors="*{price}"></div>
-            </div>
-            <small class="col-sm-7 text-muted">Proszę wpisać cene</small>
-        </div>
+        <em th:replace="~{components/input :: input(
+            name='name',
+            label='Nazwa',
+            hint='Prosze podać nazwę dodatku'
+        )}"></em>
+
+        <em th:replace="~{components/input :: input(
+            name='price',
+            label='Cena'
+        )}"></em>
 
         <div class="mb-3 row">
             <div class="offset-sm-2 col-sm-10">

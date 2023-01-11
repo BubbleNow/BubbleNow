@@ -31,20 +31,21 @@ public class KindController {
         model.addAttribute("context", "kind");
         model.addAttribute("kind", new Kind());
         model.addAttribute("pageTitle", "Dodaj nowy rodzaj herbaty");
-        model.addAttribute("formPath", "/admin/kinds/create");
-
 
         return "pages/admin/kinds/form";
     }
 
     @PostMapping(path = "/create")
-    public String store(@Valid @ModelAttribute("kind") Kind kind, BindingResult bindingResult) {
+    public String store(@Valid @ModelAttribute("kind") Kind kind,
+                        BindingResult bindingResult,
+                        Model model) {
         if (!bindingResult.hasErrors()) {
             this.kindRepository.save(kind);
 
             return "redirect:/admin/kinds";
         }
-
+        model.addAttribute("context", "kind");
+        model.addAttribute("pageTitle", "Dodaj nowy rodzaj herbaty");
         return "pages/admin/kinds/form";
     }
 
@@ -53,17 +54,20 @@ public class KindController {
         model.addAttribute("context", "kind");
         model.addAttribute("kind", kindRepository.findById(id));
         model.addAttribute("pageTitle", "Edytuj rodzaj herbaty");
-        model.addAttribute("formPath", "/admin/kinds/" + id + "/edit");
 
         return "pages/admin/kinds/form";
     }
 
     @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
-    public String update(@ModelAttribute("kind") Kind kind, BindingResult bindingResult) {
+    public String update(@Valid @ModelAttribute("kind") Kind kind,
+                         BindingResult bindingResult,
+                         Model model) {
         if (!bindingResult.hasErrors()) {
             kindRepository.save(kind);
             return "redirect:/admin/kinds";
         }
+        model.addAttribute("context", "kind");
+        model.addAttribute("pageTitle", "Edytuj rodzaj herbaty");
         return "pages/admin/kinds/form";
     }
 

@@ -1,0 +1,13 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="input(name, label)" th:with="hint=${hint}" class="mb-3 row">
+    <label class="col-form-label col-sm-2 text-sm-end" for="form-name" th:text="${label}"></label>
+    <div class="col-sm-3">
+        <input type="text" id="form-name" class="form-control" th:field="*{__${name}__}"
+               th:classappend="${#fields.hasErrors('__${name}__') ? 'is-invalid' : null}">
+        <div class="invalid-feedback" th:errors="*{__${name}__}"></div>
+    </div>
+    <small class="col-sm-7 text-muted" th:text="${hint}"></small>
+</div>
+
+</html>

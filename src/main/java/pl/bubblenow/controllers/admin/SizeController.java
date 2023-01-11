@@ -30,20 +30,22 @@ public class SizeController {
     public String create(Model model) {
         model.addAttribute("context", "size");
         model.addAttribute("size", new Size());
-        model.addAttribute("pageTitle", "Dodaj nowy rozmiar");
-        model.addAttribute("formPath", "/admin/sizes/create");
+        model.addAttribute("pageTitle", "Dodaj rozmiar");
 
         return "pages/admin/sizes/form";
     }
 
     @PostMapping(path = "/create")
-    public String store(@Valid @ModelAttribute("size") Size size, BindingResult bindingResult) {
+    public String store(@Valid @ModelAttribute("size") Size size,
+                        BindingResult bindingResult,
+                        Model model) {
         if (!bindingResult.hasErrors()) {
             this.sizeRepository.save(size);
 
             return "redirect:/admin/sizes";
         }
-
+        model.addAttribute("context", "size");
+        model.addAttribute("pageTitle", "Dodaj rozmiar");
         return "pages/admin/sizes/form";
     }
 
@@ -52,16 +54,20 @@ public class SizeController {
         model.addAttribute("context", "size");
         model.addAttribute("size", sizeRepository.findById(id));
         model.addAttribute("pageTitle", "Edytuj rozmiar");
-        model.addAttribute("formPath", "/admin/sizes/" + id + "/edit");
+
         return "pages/admin/sizes/form";
     }
 
     @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
-    public String update(@ModelAttribute("size") Size size, BindingResult bindingResult) {
+    public String update(@Valid @ModelAttribute("size") Size size,
+                         BindingResult bindingResult,
+                         Model model) {
         if (!bindingResult.hasErrors()) {
             sizeRepository.save(size);
             return "redirect:/admin/sizes";
         }
+        model.addAttribute("context", "size");
+        model.addAttribute("pageTitle", "Edytuj rozmiar");
         return "pages/admin/sizes/form";
     }
 

@@ -31,20 +31,22 @@ public class MilkController {
     public String create(Model model) {
         model.addAttribute("context", "milk");
         model.addAttribute("milk", new Milk());
-        model.addAttribute("pageTitle", "Dodaj nowe mleko");
-        model.addAttribute("formPath", "/admin/milks/create");
+        model.addAttribute("pageTitle", "Dodaj mleko");
 
         return "pages/admin/milks/form";
     }
 
     @PostMapping(path = "/create")
-    public String store(@Valid @ModelAttribute("milk") Milk milk, BindingResult bindingResult) {
+    public String store(@Valid @ModelAttribute("milk") Milk milk,
+                        BindingResult bindingResult,
+                        Model model) {
         if (!bindingResult.hasErrors()) {
             this.milkRepository.save(milk);
 
             return "redirect:/admin/milks";
         }
-
+        model.addAttribute("context", "milk");
+        model.addAttribute("pageTitle", "Dodaj mleko");
         return "pages/admin/milks/form";
     }
 
@@ -52,18 +54,21 @@ public class MilkController {
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("milk", milkRepository.findById(id));
         model.addAttribute("pageTitle", "Edytuj mleko");
-        model.addAttribute("formPath", "/admin/milks/" + id + "/edit");
         model.addAttribute("context", "milk");
 
         return "pages/admin/milks/form";
     }
 
     @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
-    public String update(@Valid @ModelAttribute("milk") Milk milk, BindingResult bindingResult) {
+    public String update(@Valid @ModelAttribute("milk") Milk milk,
+                         BindingResult bindingResult,
+                         Model model) {
         if (!bindingResult.hasErrors()) {
             milkRepository.save(milk);
             return "redirect:/admin/milks";
         }
+        model.addAttribute("context", "milk");
+        model.addAttribute("pageTitle", "Edytuj mleko");
         return "pages/admin/milks/form";
     }
 
