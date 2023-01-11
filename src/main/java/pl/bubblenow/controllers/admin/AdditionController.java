@@ -22,6 +22,7 @@ public class AdditionController {
         model.addAttribute("context", "addition");
         model.addAttribute("additions", additionRepository.findAll());
         model.addAttribute("pageTitle", "Lista dodatków");
+        model.addAttribute("createPath", "/admin/additions/create");
         return "pages/admin/additions/list";
     }
 

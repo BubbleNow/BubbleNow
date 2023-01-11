@@ -21,6 +21,7 @@ public class KindController {
     public String kindIndex(Model model) {
         model.addAttribute("context", "kind");
         model.addAttribute("kinds", kindRepository.findAll());
+        model.addAttribute("createPath", "/admin/kinds/create");
         model.addAttribute("pageTitle", "Lista rodzajów herbat");
         return "pages/admin/kinds/list";
     }

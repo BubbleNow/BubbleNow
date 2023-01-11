@@ -22,6 +22,7 @@ public class SyrupController {
         model.addAttribute("context", "syrup");
         model.addAttribute("syrups", syrupRepository.findAll());
         model.addAttribute("pageTitle", "Lista syropów");
+        model.addAttribute("createPath", "/admin/syrups/create");
         return "pages/admin/syrups/list";
     }
 

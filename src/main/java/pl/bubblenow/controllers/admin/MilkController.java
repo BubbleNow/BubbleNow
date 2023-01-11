@@ -22,6 +22,7 @@ public class MilkController {
     public String milksIndex(Model model) {
         model.addAttribute("context", "milk");
         model.addAttribute("milks", milkRepository.findAll());
+        model.addAttribute("createPath", "/admin/milks/create");
         model.addAttribute("pageTitle", "Lista mlek");
         return "pages/admin/milks/list";
     }

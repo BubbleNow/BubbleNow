@@ -22,6 +22,7 @@ public class SizeController {
         model.addAttribute("context", "size");
         model.addAttribute("sizes", sizeRepository.findAll());
         model.addAttribute("pageTitle", "Lista rozmiarów");
+        model.addAttribute("createPath", "/admin/sizes/create");
         return "pages/admin/sizes/list";
     }
 
