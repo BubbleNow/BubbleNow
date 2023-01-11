@@ -48,6 +48,7 @@ public class SizeController {
 
     @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("context", "size");
         model.addAttribute("size", sizeRepository.findById(id));
         model.addAttribute("pageTitle", "Edytuj rozmiar");
         model.addAttribute("formPath", "/admin/sizes/" + id + "/edit");

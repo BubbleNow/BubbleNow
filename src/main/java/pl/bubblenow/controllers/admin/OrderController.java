@@ -17,8 +17,9 @@ public class OrderController {
 
     @GetMapping(path = {"", "/"})
     public String orderIndex(Model model) {
+        model.addAttribute("pageTitle", "Lista zamówień");
         model.addAttribute("context", "order");
         model.addAttribute("orders", orderRepository.findAll());
-        return "pages/admin/orders/order";
+        return "pages/admin/orders/list";
     }
 }

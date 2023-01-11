@@ -21,15 +21,18 @@ public class AdditionController {
     public String additionIndex(Model model) {
         model.addAttribute("context", "addition");
         model.addAttribute("additions", additionRepository.findAll());
-        return "pages/admin/additions/addition";
+        model.addAttribute("pageTitle", "Lista dodatków");
+        return "pages/admin/additions/list";
     }
 
     @GetMapping(path = {"create", "create/"})
     public String create(Model model) {
         model.addAttribute("context", "addition");
         model.addAttribute("addition", new Addition());
+        model.addAttribute("pageTitle", "Dodaj nowy dodatek");
+        model.addAttribute("formPath", "/admin/additions/create");
 
-        return "pages/admin/additions/create";
+        return "pages/admin/additions/form";
     }
 
     @PostMapping(path = "/create")
@@ -40,27 +43,29 @@ public class AdditionController {
             return "redirect:/admin/additions";
         }
 
-        return "pages/admin/additions/create";
+        return "pages/admin/additions/form";
     }
 
-    @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
-
+        model.addAttribute("context", "addition");
         model.addAttribute("addition", additionRepository.findById(id));
-        return "pages/admin/additions/edit";
+        model.addAttribute("pageTitle", "Edytuj dodatek");
+        model.addAttribute("formPath", "/admin/additions/" + id + "/edit");
+        return "pages/admin/additions/form";
     }
 
-    @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String update(@ModelAttribute("addition") Addition addition, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             additionRepository.save(addition);
             return "redirect:/admin/additions";
         }
-        return "pages/admin/additions/edit";
+        return "pages/admin/additions/form";
     }
 
     @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable int id) {
         additionRepository.deleteById(id);
         return "redirect:/admin/additions";
     }

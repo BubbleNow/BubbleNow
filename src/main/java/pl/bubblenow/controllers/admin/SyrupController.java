@@ -51,6 +51,7 @@ public class SyrupController {
         model.addAttribute("pageTitle", "Edytuj syrop");
         model.addAttribute("formPath", "/admin/syrups/" + id + "/edit");
         model.addAttribute("syrup", syrupRepository.findById(id));
+        model.addAttribute("context", "syrup");
         return "pages/admin/syrups/form";
     }
 

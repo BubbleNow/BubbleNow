@@ -47,16 +47,17 @@ public class MilkController {
         return "pages/admin/milks/form";
     }
 
-    @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("milk", milkRepository.findById(id));
         model.addAttribute("pageTitle", "Edytuj mleko");
         model.addAttribute("formPath", "/admin/milks/" + id + "/edit");
+        model.addAttribute("context", "milk");
 
         return "pages/admin/milks/form";
     }
 
-    @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String update(@Valid @ModelAttribute("milk") Milk milk, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             milkRepository.save(milk);

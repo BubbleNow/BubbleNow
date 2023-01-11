@@ -21,15 +21,19 @@ public class KindController {
     public String kindIndex(Model model) {
         model.addAttribute("context", "kind");
         model.addAttribute("kinds", kindRepository.findAll());
-        return "pages/admin/kinds/kind";
+        model.addAttribute("pageTitle", "Lista rodzajów herbat");
+        return "pages/admin/kinds/list";
     }
 
     @GetMapping(path = {"create", "create/"})
     public String create(Model model) {
         model.addAttribute("context", "kind");
         model.addAttribute("kind", new Kind());
+        model.addAttribute("pageTitle", "Dodaj nowy rodzaj herbaty");
+        model.addAttribute("formPath", "/admin/kinds/create");
 
-        return "pages/admin/kinds/create";
+
+        return "pages/admin/kinds/form";
     }
 
     @PostMapping(path = "/create")
@@ -40,23 +44,26 @@ public class KindController {
             return "redirect:/admin/kinds";
         }
 
-        return "pages/admin/kinds/create";
+        return "pages/admin/kinds/form";
     }
 
-    @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
-
+        model.addAttribute("context", "kind");
         model.addAttribute("kind", kindRepository.findById(id));
-        return "pages/admin/kinds/edit";
+        model.addAttribute("pageTitle", "Edytuj rodzaj herbaty");
+        model.addAttribute("formPath", "/admin/kinds/" + id + "/edit");
+
+        return "pages/admin/kinds/form";
     }
 
-    @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
+    @PostMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String update(@ModelAttribute("kind") Kind kind, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             kindRepository.save(kind);
             return "redirect:/admin/kinds";
         }
-        return "pages/admin/kinds/edit";
+        return "pages/admin/kinds/form";
     }
 
     @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})
