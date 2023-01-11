@@ -21,15 +21,17 @@ public class SyrupController {
     public String syrupIndex(Model model) {
         model.addAttribute("context", "syrup");
         model.addAttribute("syrups", syrupRepository.findAll());
-        return "pages/admin/syrups/syrup";
+        return "pages/admin/syrups/list";
     }
 
     @GetMapping(path = {"create", "create/"})
     public String create(Model model) {
+        model.addAttribute("pageTitle", "Dodaj nowy syrop");
+        model.addAttribute("formPath", "/admin/syrups/create" );
         model.addAttribute("context", "syrup");
         model.addAttribute("syrup", new Syrup());
 
-        return "pages/admin/syrups/create";
+        return "pages/admin/syrups/form";
     }
 
     @PostMapping(path = "/create")
@@ -40,14 +42,15 @@ public class SyrupController {
             return "redirect:/admin/syrups";
         }
 
-        return "pages/admin/syrups/create";
+        return "pages/admin/syrups/form";
     }
 
     @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
-
+        model.addAttribute("pageTitle", "Edytuj syrop");
+        model.addAttribute("formPath", "/admin/syrups/" + id + "/edit" );
         model.addAttribute("syrup", syrupRepository.findById(id));
-        return "pages/admin/syrups/edit";
+        return "pages/admin/syrups/form";
     }
 
     @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
@@ -56,7 +59,7 @@ public class SyrupController {
             syrupRepository.save(syrup);
             return "redirect:/admin/syrups";
         }
-        return "pages/admin/syrups/edit";
+        return "pages/admin/syrups/form";
     }
     @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})
     public String delete(@PathVariable int id){
