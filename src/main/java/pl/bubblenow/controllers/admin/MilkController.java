@@ -22,15 +22,18 @@ public class MilkController {
     public String milksIndex(Model model) {
         model.addAttribute("context", "milk");
         model.addAttribute("milks", milkRepository.findAll());
-        return "pages/admin/milks/milk";
+        model.addAttribute("pageTitle", "Lista mlek");
+        return "pages/admin/milks/list";
     }
 
     @GetMapping(path = {"create/", "create"})
     public String create(Model model) {
         model.addAttribute("context", "milk");
         model.addAttribute("milk", new Milk());
+        model.addAttribute("pageTitle", "Dodaj nowe mleko");
+        model.addAttribute("formPath", "/admin/milks/create");
 
-        return "pages/admin/milks/create";
+        return "pages/admin/milks/form";
     }
 
     @PostMapping(path = "/create")
@@ -41,14 +44,16 @@ public class MilkController {
             return "redirect:/admin/milks";
         }
 
-        return "pages/admin/milks/create";
+        return "pages/admin/milks/form";
     }
 
     @GetMapping(path = {"/{id}/edit/","/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("milk", milkRepository.findById(id));
+        model.addAttribute("pageTitle", "Edytuj mleko");
+        model.addAttribute("formPath", "/admin/milks/" + id + "/edit");
 
-        return "pages/admin/milks/edit";
+        return "pages/admin/milks/form";
     }
 
     @PostMapping(path = {"/{id}/edit/","/{id}/edit"})
@@ -57,7 +62,7 @@ public class MilkController {
             milkRepository.save(milk);
             return "redirect:/admin/milks";
         }
-        return "pages/admin/milks/edit";
+        return "pages/admin/milks/form";
     }
 
     @PostMapping(path = {"/{id}/delete", "/{id}/delete/"})

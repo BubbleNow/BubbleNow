@@ -7,7 +7,7 @@
         <h1 class="h2">Edytuj mleko</h1>
     </div>
 
-    <form th:action="@{'/admin/milks/' + ${milk.id} + '/edit'}" th:object="${milk}" method="post">
+    <form th:action="${formPath}" th:object="${milk}" method="post">
 
         <div class="mb-3 row">
             <label class="col-form-label col-sm-2 text-sm-end" for="form-name">Nazwa</label>
