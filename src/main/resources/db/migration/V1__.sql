@@ -57,6 +57,15 @@ CREATE TABLE syrup
     CONSTRAINT pk_syrup PRIMARY KEY (id)
 );
 
+CREATE TABLE users
+(
+    id       INT AUTO_INCREMENT NOT NULL,
+    username VARCHAR(45)        NOT NULL,
+    password VARCHAR(100)        NOT NULL,
+    `role`   VARCHAR(45)        NOT NULL,
+    CONSTRAINT pk_users PRIMARY KEY (id)
+);
+
 ALTER TABLE bubble_tea
     ADD CONSTRAINT FK_BUBBLE_TEA_ON_ADDITION FOREIGN KEY (addition_id) REFERENCES addition (id) ON DELETE CASCADE
         ON UPDATE CASCADE;
