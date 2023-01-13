@@ -1,0 +1,14 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="buttons(name)" class="mb-3row">
+    <div class="offset-sm-2 col-sm-10">
+        <div class="d-inline-block">
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+        <div class="d-inline-block">
+            <a th:href="@{'/admin/' + ${name} }" class="btn btn-default">Wróć</a>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -15,16 +15,7 @@
             hint='Prosze podać nazwę rodzaju'
         )}"></em>
 
-        <div class="mb-3 row">
-            <div class="offset-sm-2 col-sm-10">
-                <div class="d-inline-block">
-                    <button type="submit" class="btn btn-primary">Zapisz</button>
-                </div>
-                <div class="d-inline-block">
-                    <a href="/admin/kinds/" class="btn btn-default">Wróć</a>
-                </div>
-            </div>
-        </div>
+        <em th:replace="~{components/formButtons :: buttons (name = 'kinds')}"></em>
 
     </form>
 
