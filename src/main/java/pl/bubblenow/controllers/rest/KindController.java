@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.bubblenow.repositories.KindRepository;
 
 @RestController("KindRestController")
-@RequestMapping(path = "/kinds")
+@RequestMapping(path = "/api/kinds")
 public class KindController {
 
     KindRepository kindRepository;

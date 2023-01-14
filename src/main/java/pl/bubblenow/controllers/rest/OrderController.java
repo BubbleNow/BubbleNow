@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 
 @RestController("OrderRestController")
-@RequestMapping(path = "/orders")
+@RequestMapping(path = "/api/orders")
 public class OrderController {
     OrderRepository orderRepository;
     OrderService orderService;

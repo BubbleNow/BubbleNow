@@ -27,7 +27,7 @@
                     <i data-feather="edit-2"></i> Edytuj
                 </a>
                 <form th:action="@{'/admin/sizes/' + ${size.id} + '/delete'}" method="POST">
-                    <button type="submit" class="btn btn-primary btn-sm">
+                    <button type="submit" class="btn btn-danger btn-sm">
                         <i data-feather="x-circle"></i> Usuń
                     </button>
                 </form>

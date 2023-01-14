@@ -39,6 +39,7 @@ CREATE TABLE `order`
     price         DECIMAL(10, 2)     NOT NULL,
     bubble_tea_id INT                NULL,
     date          datetime           NOT NULL,
+    status        ENUM('Nowe', 'W przygotowaniu', 'Gotowe do odbioru', 'Odebrane'),
     CONSTRAINT pk_order PRIMARY KEY (id)
 );
 

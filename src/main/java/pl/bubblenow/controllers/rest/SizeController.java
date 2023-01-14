@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.bubblenow.repositories.SizeRepository;
 
 @RestController("SizeRestController")
-@RequestMapping(path = "/sizes")
+@RequestMapping(path = "/api/sizes")
 public class SizeController {
 
     SizeRepository sizeRepository;

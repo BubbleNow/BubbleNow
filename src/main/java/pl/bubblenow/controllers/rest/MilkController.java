@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.bubblenow.repositories.MilkRepository;
 
 @RestController("MilkRestController")
-@RequestMapping(path = "/milks")
+@RequestMapping(path = "/api/milks")
 public class MilkController {
 
     MilkRepository milkRepository;

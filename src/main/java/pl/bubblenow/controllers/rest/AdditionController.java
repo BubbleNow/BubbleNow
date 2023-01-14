@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.bubblenow.repositories.AdditionRepository;
 
 @RestController("AdditionRestController")
-@RequestMapping(path = "/additions")
+@RequestMapping(path = "/api/additions")
 public class AdditionController {
 
     AdditionRepository additionRepository;

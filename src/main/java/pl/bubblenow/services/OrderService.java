@@ -57,4 +57,19 @@ public class OrderService {
         return latestOrder == null ? 1 : latestOrder.getNumber() + 1;
     }
 
+    public void updateToNextStatus(int id){
+        Order order = orderRepository.findById(id);
+
+        if (order == null) {
+           return;
+        }
+
+        switch (order.getStatus()) {
+            case "Nowe" -> order.setStatus("W przygotowaniu");
+            case "W przygotowaniu" -> order.setStatus("Gotowe do odbioru");
+            case "Gotowe do odbioru" -> order.setStatus("Odebrane");
+        }
+        orderRepository.save(order);
+    }
+
 }

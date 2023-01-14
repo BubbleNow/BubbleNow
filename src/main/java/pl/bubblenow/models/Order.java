@@ -17,6 +17,8 @@ public class Order {
     private int number;
     private BigDecimal price;
 
+    private String status = "Nowe";
+
     @OneToOne
     @JoinColumn(name = "bubble_tea_id")
     @JsonManagedReference
@@ -62,5 +64,13 @@ public class Order {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
