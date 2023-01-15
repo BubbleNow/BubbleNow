@@ -24,7 +24,7 @@
             <td th:text="${order.id}"></td>
             <td th:text="${order.number}"></td>
             <td th:text="${order.price}"></td>
-            <td th:text="${order.bubbleTea.id}"></td>
+            <td th:text="${order.bubbleTea?.id != null ? '${order.bubbleTea.id}' : 'Usunięto' }"></td>
             <td th:text="${order.date}"></td>
             <td th:text="${order.status}"></td>
             <td>
