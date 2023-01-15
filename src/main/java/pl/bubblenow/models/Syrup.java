@@ -19,6 +19,9 @@ public class Syrup {
     @NotNull(message = "Name is mandatory")
     @jakarta.validation.constraints.Size(min = 2, max = 45)
     private String name;
+    @Column(nullable = false)
+    @NotNull(message = "Color is mandatory")
+    private String color;
 
     @OneToMany(mappedBy = "syrup", cascade = CascadeType.ALL)
     private List<BubbleTea> bubbleTeas;
@@ -54,5 +57,13 @@ public class Syrup {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
