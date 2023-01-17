@@ -7,7 +7,7 @@
         <h1 class="h2" th:text="${pageTitle}"></h1>
     </div>
 
-    <form th:object="${milk}" method="post">
+    <form th:object="${milk}" method="post" enctype="multipart/form-data">
 
         <em th:replace="~{components/input :: input(
             name='name',
@@ -19,6 +19,16 @@
             name='price',
             label='Cena'
         )}"></em>
+
+        <div class="mb-3 row">
+            <label class="col-form-label col-sm-2 text-sm-end" for="image">Zdjęcie</label>
+            <div class="col-sm-3">
+                <input type="file" id="image" name="image" class="form-control" accept="image/png, image/jpeg">
+                <div class="invalid-feedback" th:errors="*{file_path}"></div>
+            </div>
+            <small class="col-sm-7 text-muted">Dodaj zdjecie</small>
+        </div>
+
 
         <em th:replace="~{components/formButtons :: buttons (name = 'milks')}"></em>
 

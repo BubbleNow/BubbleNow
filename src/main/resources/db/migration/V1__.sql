@@ -13,7 +13,7 @@ CREATE TABLE milk
     price DECIMAL(10, 2)     NOT NULL,
     CONSTRAINT pk_milk PRIMARY KEY (id)
 );
-
+#TODO: KOLUMNA ZDJECIE
 CREATE TABLE bubble_tea
 (
     id          INT AUTO_INCREMENT NOT NULL,
