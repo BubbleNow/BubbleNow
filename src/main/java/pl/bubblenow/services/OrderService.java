@@ -57,11 +57,11 @@ public class OrderService {
         return latestOrder == null ? 1 : latestOrder.getNumber() + 1;
     }
 
-    public void updateToNextStatus(int id){
+    public void updateToNextStatus(int id) {
         Order order = orderRepository.findById(id);
 
         if (order == null) {
-           return;
+            return;
         }
 
         switch (order.getStatus()) {
