@@ -3,10 +3,20 @@ package pl.bubblenow.controllers.admin;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.bubblenow.models.Syrup;
 import pl.bubblenow.repositories.SyrupRepository;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "admin/syrups")
@@ -38,9 +48,26 @@ public class SyrupController {
     @PostMapping(path = "/create")
     public String store(@Valid @ModelAttribute("syrup") Syrup syrup,
                         BindingResult bindingResult,
-                        Model model) {
+                        Model model,
+                        @RequestParam("image") MultipartFile image ) throws IOException {
         if (!bindingResult.hasErrors()) {
-            this.syrupRepository.save(syrup);
+            String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+            String uploadDir = "src\\main\\resources\\static\\uploads\\";
+            // src\\main\\resources\\static\\uploads\\
+            //  TODO: 57 LINIJKA POPRAW
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            try (InputStream inputStream = image.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                syrup.setFile_path(filePath.getFileName().toString());
+            } catch (IOException e) {
+                throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
+            }
+            syrupRepository.save(syrup);
 
             return "redirect:/admin/syrups";
         }

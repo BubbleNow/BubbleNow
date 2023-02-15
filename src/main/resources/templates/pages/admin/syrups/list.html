@@ -13,7 +13,6 @@
         <tr>
             <th>Id</th>
             <th>Smak</th>
-            <th>Kolor</th>
             <th>Akcje</th>
         </tr>
         </thead>
@@ -21,10 +20,6 @@
         <tr th:each="syrup : ${syrups}">
             <td th:text="${syrup.id}"></td>
             <td th:text="${syrup.name}"></td>
-            <td>
-                <div class="color-preview" th:style="${'background-color: ' + syrup.color + ';'}"
-                     th:text="${syrup.color}"></div>
-            </td>
             <td>
                 <a class="btn btn-primary btn-sm" th:href="@{'/admin/syrups/' + ${syrup.id} + '/edit'}">
                     <i data-feather="edit-2"></i> Edytuj

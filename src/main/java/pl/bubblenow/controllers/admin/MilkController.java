@@ -54,7 +54,8 @@ public class MilkController {
 
         if (!bindingResult.hasErrors()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
-            String uploadDir = "E:\\workspace\\BubbleNow\\src\\main\\resources\\static\\uploads\\";
+            String uploadDir = "src\\main\\resources\\static\\uploads\\";
+            // src\\main\\resources\\static\\uploads\\
             //  TODO: 57 LINIJKA POPRAW
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {

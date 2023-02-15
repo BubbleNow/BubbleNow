@@ -26,6 +26,9 @@ public class Milk {
     @Digits(integer = 6, fraction = 2)
     private BigDecimal price;
 
+    @Column(nullable = false)
+    @NotNull(message = "Color is mandatory")
+    private String color;
     private String file_path;
 
     @OneToMany(mappedBy = "milk", cascade = CascadeType.ALL)
@@ -65,6 +68,14 @@ public class Milk {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getFile_path() {

@@ -18,6 +18,7 @@ public class Kind {
     @NotNull(message = "Name is mandatory")
     @Size(min = 2, max = 45)
     private String name;
+    private String file_path;
     @OneToMany(mappedBy = "kind")
     private List<BubbleTea> bubbleTeas;
 
@@ -26,6 +27,7 @@ public class Kind {
         this.name = name;
         this.bubbleTeas = bubbleTeas;
     }
+
 
     public List<BubbleTea> getBubbleTeas() {
         return bubbleTeas;
@@ -55,11 +57,12 @@ public class Kind {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Kind{" +
-                "id=" + id +
-                ", name='" + name +
-                '}';
+    public String getFile_path() {
+        return file_path;
     }
+
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
+    }
+
 }

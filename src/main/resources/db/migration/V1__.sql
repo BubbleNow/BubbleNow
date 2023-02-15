@@ -11,6 +11,7 @@ CREATE TABLE milk
     id    INT AUTO_INCREMENT NOT NULL,
     name  VARCHAR(255)       NOT NULL,
     price DECIMAL(10, 2)     NOT NULL,
+    color VARCHAR(255)       NOT NULL,
     CONSTRAINT pk_milk PRIMARY KEY (id)
 );
 #TODO: KOLUMNA ZDJECIE
@@ -55,7 +56,6 @@ CREATE TABLE syrup
 (
     id   INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255)       NOT NULL,
-    color VARCHAR(255)       NOT NULL,
     CONSTRAINT pk_syrup PRIMARY KEY (id)
 );
 

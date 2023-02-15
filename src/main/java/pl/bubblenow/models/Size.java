@@ -31,6 +31,7 @@ public class Size {
     private BigDecimal price;
     @OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
     private List<BubbleTea> bubbleTeas;
+    private String file_path;
 
     public Size() {
     }
@@ -72,5 +73,13 @@ public class Size {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getFile_path() {
+        return file_path;
+    }
+
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
     }
 }
