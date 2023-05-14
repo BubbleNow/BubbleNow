@@ -34,7 +34,7 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public Order create(
+    public int create(
             @RequestParam(required = false) Addition addition,
             @RequestParam Syrup syrup,
             @RequestParam Milk milk,

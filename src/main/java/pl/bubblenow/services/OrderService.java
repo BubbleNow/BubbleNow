@@ -6,6 +6,7 @@ import pl.bubblenow.repositories.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -30,7 +31,7 @@ public class OrderService {
                 .add(size.getPrice());
     }
 
-    public Order create(Addition addition, Syrup syrup, Milk milk, Size size, Kind kind) {
+    public int create(Addition addition, Syrup syrup, Milk milk, Size size, Kind kind) {
         BubbleTea bubbleTea = new BubbleTea();
 
         bubbleTea.setAddition(addition);
@@ -48,7 +49,7 @@ public class OrderService {
         order.setBubbleTea(bubbleTea);
         orderRepository.save(order);
 
-        return order;
+        return order.getNumber();
     }
 
     public int getNextNumber() {

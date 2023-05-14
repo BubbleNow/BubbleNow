@@ -33,6 +33,9 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/css/**").permitAll();
                     auth.requestMatchers("/js/**").permitAll();
                     auth.requestMatchers("/api/**").permitAll();
+                    auth.requestMatchers("/api/orders/create").permitAll();
+                    auth.requestMatchers("/images/**").permitAll();
+                    auth.requestMatchers("/uploads/**").permitAll();
                     auth.requestMatchers("/admin/**").hasAuthority("ADMIN");
                 })
                 .formLogin(withDefaults())

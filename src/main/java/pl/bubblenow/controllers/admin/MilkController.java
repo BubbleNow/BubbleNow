@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.bubblenow.models.Milk;
+import pl.bubblenow.models.Order;
 import pl.bubblenow.repositories.MilkRepository;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class MilkController {
         model.addAttribute("milks", milkRepository.findAll());
         model.addAttribute("createPath", "/admin/milks/create");
         model.addAttribute("pageTitle", "Lista mlek");
+
         return "pages/admin/milks/list";
     }
 

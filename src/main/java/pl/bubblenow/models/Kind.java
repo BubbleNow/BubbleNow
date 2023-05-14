@@ -19,6 +19,8 @@ public class Kind {
     @Size(min = 2, max = 45)
     private String name;
     private String file_path;
+    private String image;
+
     @OneToMany(mappedBy = "kind")
     private List<BubbleTea> bubbleTeas;
 
@@ -63,6 +65,10 @@ public class Kind {
 
     public void setFile_path(String file_path) {
         this.file_path = file_path;
+    }
+
+    public String getImage() {
+        return "/uploads/" + file_path;
     }
 
 }

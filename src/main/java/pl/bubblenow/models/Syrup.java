@@ -20,6 +20,8 @@ public class Syrup {
     @jakarta.validation.constraints.Size(min = 2, max = 45)
     private String name;
     private String file_path;
+    private String image;
+
     @OneToMany(mappedBy = "syrup", cascade = CascadeType.ALL)
     private List<BubbleTea> bubbleTeas;
 
@@ -62,5 +64,9 @@ public class Syrup {
 
     public void setFile_path(String file_path) {
         this.file_path = file_path;
+    }
+
+    public String getImage() {
+        return "/uploads/" + file_path;
     }
 }

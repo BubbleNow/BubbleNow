@@ -3,6 +3,7 @@ CREATE TABLE addition
     id    INT AUTO_INCREMENT NOT NULL,
     name  VARCHAR(255)       NOT NULL,
     price DECIMAL(10, 2)     NOT NULL,
+    file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_addition PRIMARY KEY (id)
 );
 
@@ -12,6 +13,7 @@ CREATE TABLE milk
     name  VARCHAR(255)       NOT NULL,
     price DECIMAL(10, 2)     NOT NULL,
     color VARCHAR(255)       NOT NULL,
+    file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_milk PRIMARY KEY (id)
 );
 #TODO: KOLUMNA ZDJECIE
@@ -30,6 +32,7 @@ CREATE TABLE kind
 (
     id   INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255)       NOT NULL,
+    file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_kind PRIMARY KEY (id)
 );
 
@@ -49,6 +52,7 @@ CREATE TABLE size
     id    INT AUTO_INCREMENT NOT NULL,
     name  VARCHAR(255)       NOT NULL,
     price DECIMAL(10, 2)     NOT NULL,
+    file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_size PRIMARY KEY (id)
 );
 
@@ -56,6 +60,7 @@ CREATE TABLE syrup
 (
     id   INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255)       NOT NULL,
+    file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_syrup PRIMARY KEY (id)
 );
 

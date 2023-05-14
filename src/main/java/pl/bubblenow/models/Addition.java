@@ -27,6 +27,7 @@ public class Addition {
     private BigDecimal price;
 
     private String file_path;
+    private String image;
 
     @OneToMany(mappedBy = "addition")
     private List<BubbleTea> bubbleTeas;
@@ -79,5 +80,9 @@ public class Addition {
 
     public void setFile_path(String file_path) {
         this.file_path = file_path;
+    }
+
+    public String getImage() {
+        return "/uploads/" + file_path;
     }
 }
