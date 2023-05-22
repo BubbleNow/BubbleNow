@@ -16,7 +16,6 @@ CREATE TABLE milk
     file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_milk PRIMARY KEY (id)
 );
-#TODO: KOLUMNA ZDJECIE
 CREATE TABLE bubble_tea
 (
     id          INT AUTO_INCREMENT NOT NULL,
@@ -60,6 +59,7 @@ CREATE TABLE syrup
 (
     id   INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255)       NOT NULL,
+    color VARCHAR(255)       NOT NULL,
     file_path VARCHAR(255)   NOT NULL,
     CONSTRAINT pk_syrup PRIMARY KEY (id)
 );

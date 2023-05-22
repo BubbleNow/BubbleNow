@@ -91,4 +91,5 @@ public class Milk {
     public String getImage() {
         return "/uploads/" + file_path;
     }
+
 }

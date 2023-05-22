@@ -34,6 +34,7 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/js/**").permitAll();
                     auth.requestMatchers("/api/**").permitAll();
                     auth.requestMatchers("/api/orders/create").permitAll();
+                    auth.requestMatchers("/api/orders/get-price").permitAll();
                     auth.requestMatchers("/images/**").permitAll();
                     auth.requestMatchers("/uploads/**").permitAll();
                     auth.requestMatchers("/admin/**").hasAuthority("ADMIN");

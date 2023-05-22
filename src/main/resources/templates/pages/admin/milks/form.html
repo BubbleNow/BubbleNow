@@ -20,10 +20,13 @@
             label='Cena'
         )}"></em>
 
+        <input type="hidden" th:field="*{file_path}">
+
         <div class="mb-3 row">
             <label class="col-form-label col-sm-2 text-sm-end" for="image">Zdjęcie</label>
             <div class="col-sm-3">
-                <input type="file" id="image" name="image" class="form-control" accept="image/png, image/jpeg">
+                <input type="file" id="image" name="image" class="form-control" accept="image/png, image/jpeg"
+                       th:required="${#strings.isEmpty(id)}" th:field="*{image}">
                 <div class="invalid-feedback" th:errors="*{file_path}"></div>
             </div>
             <small class="col-sm-7 text-muted">Dodaj zdjecie</small>

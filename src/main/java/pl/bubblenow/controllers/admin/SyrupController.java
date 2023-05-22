@@ -49,28 +49,35 @@ public class SyrupController {
     public String store(@Valid @ModelAttribute("syrup") Syrup syrup,
                         BindingResult bindingResult,
                         Model model,
-                        @RequestParam("image") MultipartFile image ) throws IOException {
+                        @RequestParam("image") MultipartFile image) throws IOException {
+        System.out.println("jestem w 53");
+        System.out.println(bindingResult.getAllErrors());
         if (!bindingResult.hasErrors()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
             String uploadDir = "src\\main\\resources\\static\\uploads\\";
             // src\\main\\resources\\static\\uploads\\
             //  TODO: 57 LINIJKA POPRAW
+            System.out.println("jestem w 59");
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {
+                System.out.println("jestem w 61");
                 Files.createDirectories(uploadPath);
             }
-
+            System.out.println("jestem w 64");
             try (InputStream inputStream = image.getInputStream()) {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
                 syrup.setFile_path(filePath.getFileName().toString());
             } catch (IOException e) {
+                System.out.println("jestem w 70");
                 throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
             }
+            System.out.println("jestem w 73");
             syrupRepository.save(syrup);
 
             return "redirect:/admin/syrups";
         }
+        System.out.println("jestem w 78");
         model.addAttribute("context", "syrup");
         model.addAttribute("pageTitle", "Dodaj syrop");
         return "pages/admin/syrups/form";

@@ -26,8 +26,8 @@ public class OrderController {
 
     @GetMapping("/get-price")
     public BigDecimal getPrice(
-            @RequestParam Size size,
-            @RequestParam Milk milk,
+            @RequestParam(required = false) Size size,
+            @RequestParam(required = false) Milk milk,
             @RequestParam(required = false) Addition addition
     ) {
         return orderService.countPrice(addition, milk, size);

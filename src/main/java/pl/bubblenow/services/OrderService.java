@@ -26,9 +26,17 @@ public class OrderService {
                 BigDecimal.valueOf(0) :
                 addition.getPrice();
 
+        BigDecimal priceMilk = milk == null ?
+                BigDecimal.valueOf(0) :
+                milk.getPrice();
+
+        BigDecimal priceSize = size == null ?
+                BigDecimal.valueOf(0) :
+                size.getPrice();
+
         return priceAddition
-                .add(milk.getPrice())
-                .add(size.getPrice());
+                .add(priceMilk)
+                .add(priceSize);
     }
 
     public int create(Addition addition, Syrup syrup, Milk milk, Size size, Kind kind) {

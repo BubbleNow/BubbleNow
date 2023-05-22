@@ -21,6 +21,9 @@ public class Syrup {
     private String name;
     private String file_path;
     private String image;
+    @Column(nullable = false)
+    @NotNull(message = "Color is mandatory")
+    private String color;
 
     @OneToMany(mappedBy = "syrup", cascade = CascadeType.ALL)
     private List<BubbleTea> bubbleTeas;
@@ -68,5 +71,13 @@ public class Syrup {
 
     public String getImage() {
         return "/uploads/" + file_path;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
