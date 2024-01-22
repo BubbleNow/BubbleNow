@@ -1,5 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +10,11 @@ import pl.bubblenow.services.KindService;
 
 @RestController("KindRestController")
 @RequestMapping(path = "/api/kinds")
+@AllArgsConstructor
 public class KindController {
 
-    KindRepository kindRepository;
-    KindService kindService;
-
-    public KindController(KindRepository kindRepository,
-                          KindService kindService) {
-        this.kindRepository = kindRepository;
-        this.kindService = kindService;
-    }
+    private final KindRepository kindRepository;
+    private final KindService kindService;
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {

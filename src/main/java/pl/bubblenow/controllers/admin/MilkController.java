@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -21,13 +22,11 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "admin/milks")
+@AllArgsConstructor
 public class MilkController {
 
     private final MilkRepository milkRepository;
 
-    public MilkController(MilkRepository milkRepository) {
-        this.milkRepository = milkRepository;
-    }
 
     @GetMapping(path = {"", "/"})
     public String milksIndex(Model model) {
@@ -53,34 +52,25 @@ public class MilkController {
                         BindingResult bindingResult,
                         Model model,
                         @RequestParam("image") MultipartFile image) throws IOException {
-        System.out.println("MLEKO jestem w 56");
-        System.out.println(bindingResult.getAllErrors());
         if (!bindingResult.hasErrors()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
             String uploadDir = "src\\main\\resources\\static\\uploads\\";
-            // src\\main\\resources\\static\\uploads\\
-            //  TODO: 57 LINIJKA POPRAW
-            System.out.println("jestem w 62 ML");
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
-            System.out.println("jestem w 67 ML");
             try (InputStream inputStream = image.getInputStream()) {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("jestem w 71 ML");
-                milk.setFile_path(filePath.getFileName().toString());
+                milk.setFilePath(filePath.getFileName().toString());
             } catch (IOException e) {
                 throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
             }
-            System.out.println("jestem w 69mML");
 
             milkRepository.save(milk);
 
             return "redirect:/admin/milks";
         }
-        System.out.println("jestem w 82 ML");
         model.addAttribute("context", "milk");
         model.addAttribute("pageTitle", "Dodaj mleko");
         return "pages/admin/milks/form";

@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -20,12 +21,10 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "admin/sizes")
+@AllArgsConstructor
 public class SizeController {
     private final SizeRepository sizeRepository;
 
-    public SizeController(SizeRepository sizeRepository) {
-        this.sizeRepository = sizeRepository;
-    }
 
     @GetMapping(path = {"", "/"})
     public String sizeIndex(Model model) {
@@ -63,7 +62,7 @@ public class SizeController {
             try (InputStream inputStream = image.getInputStream()) {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                size.setFile_path(filePath.getFileName().toString());
+                size.setFilePath(filePath.getFileName().toString());
             } catch (IOException e) {
                 throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
             }

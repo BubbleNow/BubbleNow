@@ -1,5 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +10,12 @@ import pl.bubblenow.services.SizeService;
 
 @RestController("SizeRestController")
 @RequestMapping(path = "/api/sizes")
+@AllArgsConstructor
 public class SizeController {
 
-    SizeRepository sizeRepository;
-    SizeService sizeService;
+    private final SizeRepository sizeRepository;
+    private final SizeService sizeService;
 
-    public SizeController(SizeRepository sizeRepository,
-                          SizeService sizeService) {
-        this.sizeRepository = sizeRepository;
-        this.sizeService = sizeService;
-    }
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {

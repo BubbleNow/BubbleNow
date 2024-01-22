@@ -1,0 +1,137 @@
+<div class="panel">
+
+  <div class="logo-container">
+    <img ngSrc="assets/images/logo.png" height="96" width="384"/>
+  </div>
+
+  <div class="accordion">
+
+    <div id="base" class="accordion-item" [ngClass]="{'active': active === 'milk'}">
+      <button class="accordion-header" (click)="setActive('milk')">
+        <div class="accordion-circle">1</div>
+        <div class="accordion-label">Wybierz bazę</div>
+      </button>
+      <div class="collapse">
+        <button class="option" *ngFor="let milk of parent.milks" (click)="selectIngredient('milk', milk.id)"
+                [ngClass]="{'active': parent.selected['milk'] == milk.id}">
+          <div class="option-image">
+            <img src="http://localhost:8080{{ milk.image }}"/>
+          </div>
+          <div class="option-label">
+            {{ milk.name }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div id="kind" class="accordion-item"
+         [ngClass]="{'active': active === 'kind', 'disabled': parent.selected['milk'] == null}">
+      <button class="accordion-header" (click)="setActive('kind')">
+        <div class="accordion-circle">2</div>
+        <div class="accordion-label">Wybierz rodzaj herbaty</div>
+      </button>
+      <div class="collapse">
+        <button class="option" *ngFor="let kind of parent.kinds" (click)="selectIngredient('kind', kind.id)"
+                [ngClass]="{'active': parent.selected['kind'] == kind.id}">
+          <div class="option-image">
+            <img src="http://localhost:8080{{ kind.image }}"/>
+          </div>
+          <div class="option-label">
+            {{ kind.name }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div id="syrup" class="accordion-item"
+         [ngClass]="{'active': active === 'syrup', 'disabled': parent.selected['kind'] == null}">
+      <button class="accordion-header" (click)="setActive('syrup')">
+        <div class="accordion-circle">3</div>
+        <div class="accordion-label">Wybierz syrop</div>
+      </button>
+      <div class="collapse">
+        <button class="option" *ngFor="let syrup of parent.syrups" (click)="selectIngredient('syrup', syrup.id)"
+                [ngClass]="{'active': parent.selected['syrup'] == syrup.id}">
+          <div class="option-image">
+            <img src="http://localhost:8080{{ syrup.image }}"/>
+          </div>
+          <div class="option-label">
+            {{ syrup.name }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div id="addition" class="accordion-item"
+         [ngClass]="{'active': active === 'addition', 'disabled': parent.selected['syrup'] == null}">
+      <button class="accordion-header" (click)="setActive('addition')">
+        <div class="accordion-circle">4</div>
+        <div class="accordion-label">Wybierz dodatek</div>
+      </button>
+      <div class="collapse">
+        <button class="option" *ngFor="let addition of parent.additions"
+                (click)="selectIngredient('addition', addition.id)"
+                [ngClass]="{'active': parent.selected['addition'] == addition.id}">
+          <div class="option-image">
+            <img src="http://localhost:8080{{ addition.image }}"/>
+          </div>
+          <div class="option-label">
+            {{ addition.name }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div id="size" class="accordion-item"
+         [ngClass]="{'active': active === 'size', 'disabled': parent.selected['addition'] == null }">
+      <button class="accordion-header" (click)="setActive('size')">
+        <div class="accordion-circle">5</div>
+        <div class="accordion-label">Wybierz rozmiar</div>
+      </button>
+      <div class="collapse">
+        <button class="option" *ngFor="let size of parent.sizes" (click)="selectIngredient('size', size.id)"
+                [ngClass]="{'active': parent.selected['size'] == size.id}">
+          <div class="option-image">
+            <img src="http://localhost:8080{{ size.image }}"/>
+          </div>
+          <div class="option-label">
+            {{ size.name }}
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="button button-reset" (click)="refresh()">Rozpocznij od nowa</button>
+    <button class="button button-order" [ngClass]="{'disabled': !canOrder}" (click)="sendOrder()">Zamawiam</button>
+  </div>
+
+  <div class="modal" id="modal-order" [ngClass]="{'open' : isPopupOpen}">
+    <div class="modal-bg"></div>
+    <div class="modal-container">
+      <div *ngIf="orderNumber == null">
+        <h2>Proszę czekać</h2>
+        <hr/>
+        <img ngSrc="assets/images/loading.gif" height="50" width="50"/>
+      </div>
+      <div *ngIf="orderNumber != null">
+        <h2>Zamówienie zostało złożone</h2>
+        <hr/>
+        <p>Twój numer zamówienia:</p>
+        <h1> {{ orderNumber }} </h1>
+        <p>Sprzedawca powiadomi Cię gdy zamówienie będzie gotowe odbioru</p>
+        <hr/>
+        <button (click)="refresh()">Nowe zamówienie</button>
+      </div>
+      <div *ngIf="errorMessage !== null">
+        <h2>Proszę czekać</h2>
+        <hr/>
+        <img ngSrc="assets/images/loading.gif" height="50" width="50"/>
+        <hr/>
+        <button (click)="refresh()">Nowe zamówienie</button>
+      </div>
+    </div>
+  </div>
+
+</div>

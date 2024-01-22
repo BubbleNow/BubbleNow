@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.bubblenow.models.Addition;
 import pl.bubblenow.repositories.AdditionRepository;
+import pl.bubblenow.services.AdditionService;
+import pl.bubblenow.services.ImageService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,12 +23,12 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "admin/additions")
+@AllArgsConstructor
 public class AdditionController {
     private final AdditionRepository additionRepository;
+    private final AdditionService additionService;
+    private final ImageService imageService;
 
-    public AdditionController(AdditionRepository additionRepository) {
-        this.additionRepository = additionRepository;
-    }
 
     @GetMapping(path = {"", "/"})
     public String additionIndex(Model model) {
@@ -50,22 +53,11 @@ public class AdditionController {
                         BindingResult bindingResult,
                         Model model,
                         @RequestParam("image") MultipartFile image) throws IOException {
+        System.out.println(bindingResult.getAllErrors());
         if (!bindingResult.hasErrors()) {
-            String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
-            String uploadDir = "src\\main\\resources\\static\\uploads\\";
 
-            Path uploadPath = Paths.get(uploadDir);
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-
-            try (InputStream inputStream = image.getInputStream()) {
-                Path filePath = uploadPath.resolve(fileName);
-                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                addition.setFile_path(filePath.getFileName().toString());
-            } catch (IOException e) {
-                throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
-            }
+            additionRepository.save(addition);
+            addition.setFilePath(imageService.uploadImage(image));
             additionRepository.save(addition);
             return "redirect:/admin/additions";
         }
@@ -73,6 +65,7 @@ public class AdditionController {
         model.addAttribute("context", "addition");
         return "pages/admin/additions/form";
     }
+
 
     @GetMapping(path = {"/{id}/edit/", "/{id}/edit"})
     public String edit(@PathVariable int id, Model model) {

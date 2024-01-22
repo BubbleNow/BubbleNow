@@ -1,5 +1,6 @@
 package pl.bubblenow.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.bubblenow.models.Size;
 import pl.bubblenow.repositories.SizeRepository;
@@ -7,15 +8,11 @@ import pl.bubblenow.repositories.SizeRepository;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class SizeService {
-    private SizeRepository sizeRepository;
-
-    public SizeService(SizeRepository sizeRepository) {
-        this.sizeRepository = sizeRepository;
-    }
+    private final SizeRepository sizeRepository;
 
     public List<Size> searchSize(String query) {
-        List<Size> sizes = sizeRepository.searchSizes(query);
-        return sizes;
+        return sizeRepository.searchSizes(query);
     }
 }

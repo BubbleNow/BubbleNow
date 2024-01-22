@@ -1,5 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,15 +10,11 @@ import pl.bubblenow.services.MilkService;
 
 @RestController("MilkRestController")
 @RequestMapping(path = "/api/milks")
+@AllArgsConstructor
 public class MilkController {
 
-    MilkRepository milkRepository;
-    MilkService milkService;
-
-    public MilkController(MilkRepository milkRepository, MilkService milkService) {
-        this.milkRepository = milkRepository;
-        this.milkService = milkService;
-    }
+    private final MilkRepository milkRepository;
+    private final MilkService milkService;
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {

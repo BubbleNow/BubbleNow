@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.bubblenow.models.Kind;
 import pl.bubblenow.repositories.KindRepository;
+import pl.bubblenow.services.KindService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,12 +22,11 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "admin/kinds")
+@AllArgsConstructor
 public class KindController {
     private final KindRepository kindRepository;
+    private final KindService kindService;
 
-    public KindController(KindRepository kindRepository) {
-        this.kindRepository = kindRepository;
-    }
 
     @GetMapping(path = {"", "/"})
     public String kindIndex(Model model) {
@@ -51,21 +52,7 @@ public class KindController {
                         Model model,
                         @RequestParam("image") MultipartFile image) throws IOException {
         if (!bindingResult.hasErrors()) {
-            String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
-            String uploadDir = "src\\main\\resources\\static\\uploads\\";
-            
-            Path uploadPath = Paths.get(uploadDir);
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-
-            try (InputStream inputStream = image.getInputStream()) {
-                Path filePath = uploadPath.resolve(fileName);
-                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                kind.setFile_path(filePath.getFileName().toString());
-            } catch (IOException e) {
-                throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
-            }
+            kindService.uploadImage(kind, image);
             kindRepository.save(kind);
 
             return "redirect:/admin/kinds";

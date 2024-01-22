@@ -1,5 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +10,11 @@ import pl.bubblenow.services.SyrupService;
 
 @RestController("SyrupRestController")
 @RequestMapping(path = "/api/syrups")
+@AllArgsConstructor
 public class SyrupController {
 
-    SyrupRepository syrupRepository;
-    SyrupService syrupService;
-
-    public SyrupController(SyrupRepository syrupRepository,
-                           SyrupService syrupService) {
-        this.syrupRepository = syrupRepository;
-        this.syrupService = syrupService;
-    }
+    private final SyrupRepository syrupRepository;
+    private final SyrupService syrupService;
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {

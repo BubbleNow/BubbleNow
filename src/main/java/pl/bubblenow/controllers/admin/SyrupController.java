@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -20,12 +21,10 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "admin/syrups")
+@AllArgsConstructor
 public class SyrupController {
     private final SyrupRepository syrupRepository;
 
-    public SyrupController(SyrupRepository syrupRepository) {
-        this.syrupRepository = syrupRepository;
-    }
 
     @GetMapping(path = {"", "/"})
     public String syrupIndex(Model model) {
@@ -50,34 +49,26 @@ public class SyrupController {
                         BindingResult bindingResult,
                         Model model,
                         @RequestParam("image") MultipartFile image) throws IOException {
-        System.out.println("jestem w 53");
-        System.out.println(bindingResult.getAllErrors());
+
         if (!bindingResult.hasErrors()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
             String uploadDir = "src\\main\\resources\\static\\uploads\\";
-            // src\\main\\resources\\static\\uploads\\
-            //  TODO: 57 LINIJKA POPRAW
-            System.out.println("jestem w 59");
+
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {
-                System.out.println("jestem w 61");
                 Files.createDirectories(uploadPath);
             }
-            System.out.println("jestem w 64");
             try (InputStream inputStream = image.getInputStream()) {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-                syrup.setFile_path(filePath.getFileName().toString());
+                syrup.setFilePath(filePath.getFileName().toString());
             } catch (IOException e) {
-                System.out.println("jestem w 70");
                 throw new IOException("Nie mozna bylo zapisac pliku:" + fileName);
             }
-            System.out.println("jestem w 73");
             syrupRepository.save(syrup);
 
             return "redirect:/admin/syrups";
         }
-        System.out.println("jestem w 78");
         model.addAttribute("context", "syrup");
         model.addAttribute("pageTitle", "Dodaj syrop");
         return "pages/admin/syrups/form";

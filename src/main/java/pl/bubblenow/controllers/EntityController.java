@@ -1,5 +1,7 @@
 package pl.bubblenow.controllers;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import pl.bubblenow.repositories.*;
 
 @Controller
 @RequestMapping(path = "/entities")
+@AllArgsConstructor
 public class EntityController {
 
     private final SyrupRepository syrupRepository;
@@ -17,23 +20,6 @@ public class EntityController {
     private final KindRepository kindRepository;
     private final SizeRepository sizeRepository;
     private final OrderRepository orderRepository;
-
-    public EntityController(SyrupRepository syrupRepository,
-                            AdditionRepository additionRepository,
-                            MilkRepository milkRepository,
-                            BubbleTeaRepository bubbleTeaRepository,
-                            KindRepository kindRepository,
-                            SizeRepository sizeRepository,
-                            OrderRepository orderRepository) {
-        this.syrupRepository = syrupRepository;
-        this.additionRepository = additionRepository;
-        this.milkRepository = milkRepository;
-        this.bubbleTeaRepository = bubbleTeaRepository;
-        this.kindRepository = kindRepository;
-        this.sizeRepository = sizeRepository;
-        this.orderRepository = orderRepository;
-    }
-
 
     @GetMapping(path = {"", "/"})
     public String index(Model model) {

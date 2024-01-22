@@ -1,8 +1,11 @@
 package pl.bubblenow.controllers.rest;
 
 
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bubblenow.models.*;
+import pl.bubblenow.models.DTOs.BubbleTeaDTO;
 import pl.bubblenow.repositories.*;
 import pl.bubblenow.services.OrderService;
 
@@ -12,17 +15,12 @@ import java.math.BigDecimal;
 
 @RestController("OrderRestController")
 @RequestMapping(path = "/api/orders")
+@AllArgsConstructor
 public class OrderController {
-    OrderRepository orderRepository;
-    OrderService orderService;
+    private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
-    public OrderController(
-            OrderRepository orderRepository,
-            OrderService orderService
-    ) {
-        this.orderRepository = orderRepository;
-        this.orderService = orderService;
-    }
+
 
     @GetMapping("/get-price")
     public BigDecimal getPrice(
@@ -34,14 +32,15 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public int create(
-            @RequestParam(required = false) Addition addition,
-            @RequestParam Syrup syrup,
-            @RequestParam Milk milk,
-            @RequestParam Size size,
-            @RequestParam Kind kind
-    ) {
-        return orderService.create(addition, syrup, milk, size, kind);
+    public int create(@RequestBody BubbleTeaDTO bubbleTeaRequest) {
+
+        return orderService.create(bubbleTeaRequest);
+
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<?> getAllOrder() {
+        return ResponseEntity.ok(orderRepository.findAll());
     }
 
 }

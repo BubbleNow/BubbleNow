@@ -1,25 +1,24 @@
 package pl.bubblenow.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.bubblenow.models.*;
+import pl.bubblenow.models.DTOs.BubbleTeaDTO;
 import pl.bubblenow.repositories.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
-    BubbleTeaRepository bubbleTeaRepository;
-    OrderRepository orderRepository;
-
-    public OrderService(
-            BubbleTeaRepository bubbleTeaRepository,
-            OrderRepository orderRepository
-    ) {
-        this.bubbleTeaRepository = bubbleTeaRepository;
-        this.orderRepository = orderRepository;
-    }
+   private final BubbleTeaRepository bubbleTeaRepository;
+   private final OrderRepository orderRepository;
+    private final AdditionRepository additionRepository;
+    private final SyrupRepository syrupRepository;
+    private final SizeRepository sizeRepository;
+    private final KindRepository kindRepository;
+    private final MilkRepository milkRepository;
 
     public BigDecimal countPrice(Addition addition, Milk milk, Size size) {
         BigDecimal priceAddition = addition == null ?
@@ -39,8 +38,14 @@ public class OrderService {
                 .add(priceSize);
     }
 
-    public int create(Addition addition, Syrup syrup, Milk milk, Size size, Kind kind) {
+    public int create(BubbleTeaDTO bubbleTeaDTO) {
         BubbleTea bubbleTea = new BubbleTea();
+
+        Addition addition = additionRepository.findById(bubbleTeaDTO.getAddition().getId());
+        Syrup syrup = syrupRepository.findById(bubbleTeaDTO.getSyrup().getId());
+        Milk milk = milkRepository.findById(bubbleTeaDTO.getMilk().getId());
+        Size size = sizeRepository.findById(bubbleTeaDTO.getSize().getId());
+        Kind kind = kindRepository.findById(bubbleTeaDTO.getKind().getId());
 
         bubbleTea.setAddition(addition);
         bubbleTea.setMilk(milk);
@@ -48,6 +53,7 @@ public class OrderService {
         bubbleTea.setSyrup(syrup);
         bubbleTea.setKind(kind);
         bubbleTeaRepository.save(bubbleTea);
+
 
         Order order = new Order();
         order.setDate(new Date());

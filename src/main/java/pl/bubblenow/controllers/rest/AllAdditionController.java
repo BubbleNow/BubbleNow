@@ -1,5 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,25 +13,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/api/all")
+@AllArgsConstructor
 public class AllAdditionController {
 
-    AdditionRepository additionRepository;
-    KindRepository kindRepository;
-    MilkRepository milkRepository;
-    SizeRepository sizeRepository;
-    SyrupRepository syrupRepository;
+    private final AdditionRepository additionRepository;
+    private final KindRepository kindRepository;
+    private final MilkRepository milkRepository;
+    private final SizeRepository sizeRepository;
+    private final SyrupRepository syrupRepository;
 
-    public AllAdditionController(AdditionRepository additionRepository,
-                                 KindRepository kindRepository,
-                                 MilkRepository milkRepository,
-                                 SizeRepository sizeRepository,
-                                 SyrupRepository syrupRepository) {
-        this.additionRepository = additionRepository;
-        this.kindRepository = kindRepository;
-        this.milkRepository = milkRepository;
-        this.sizeRepository = sizeRepository;
-        this.syrupRepository = syrupRepository;
-    }
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {

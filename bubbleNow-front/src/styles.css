@@ -1,0 +1,317 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #3cc3db;
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='75' height='75' patternTransform='scale(3) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(189, 69%, 55%, 1)'/><path d='M15.896-3.379a3.051 3.051 0 0 0-3.044 3.045 3.051 3.051 0 0 0 3.044 3.045A3.05 3.05 0 0 0 18.94-.334a3.05 3.05 0 0 0-3.043-3.045zm0 .764a2.275 2.275 0 0 1 2.282 2.281 2.275 2.275 0 0 1-2.282 2.281 2.275 2.275 0 0 1-2.28-2.281 2.275 2.275 0 0 1 2.28-2.281zm29.479 5.742a4.13 4.13 0 0 0-4.123 4.123 4.13 4.13 0 0 0 4.123 4.123 4.13 4.13 0 0 0 4.123-4.123 4.13 4.13 0 0 0-4.123-4.123zm0 1.03a3.086 3.086 0 0 1 3.094 3.093 3.086 3.086 0 0 1-3.094 3.094 3.086 3.086 0 0 1-3.094-3.094 3.086 3.086 0 0 1 3.094-3.094zM66.299 8.89c-3.73 0-6.78 3.048-6.78 6.779 0 3.73 3.05 6.777 6.78 6.777 3.73 0 6.777-3.046 6.777-6.777 0-3.73-3.047-6.78-6.777-6.78zm0 2.214a4.547 4.547 0 0 1 4.562 4.565 4.547 4.547 0 0 1-4.562 4.564 4.548 4.548 0 0 1-4.565-4.564 4.548 4.548 0 0 1 4.565-4.565zm-24.653 9.2a4.499 4.499 0 0 0-4.488 4.486 4.499 4.499 0 0 0 4.488 4.486 4.497 4.497 0 0 0 4.487-4.486 4.497 4.497 0 0 0-4.487-4.486zm0 1.46a3.014 3.014 0 0 1 3.026 3.026 3.014 3.014 0 0 1-3.026 3.025 3.014 3.014 0 0 1-3.025-3.025 3.014 3.014 0 0 1 3.025-3.025zm24.086 9.94A2.3 2.3 0 0 0 63.438 34a2.3 2.3 0 0 0 2.294 2.295A2.298 2.298 0 0 0 68.025 34a2.298 2.298 0 0 0-2.293-2.295zm0 .576c.953 0 1.72.766 1.72 1.719 0 .953-.767 1.719-1.72 1.719A1.714 1.714 0 0 1 64.014 34c0-.953.765-1.719 1.718-1.719zm-49.234 6.545c-2.952 0-5.363 2.413-5.363 5.365a5.376 5.376 0 0 0 5.363 5.364 5.376 5.376 0 0 0 5.363-5.364c0-2.952-2.41-5.365-5.363-5.365zm0 1.744c2.01 0 3.621 1.611 3.621 3.621s-1.61 3.621-3.621 3.621a3.608 3.608 0 0 1-3.621-3.62 3.608 3.608 0 0 1 3.621-3.622zm33.84 6.348a4.318 4.318 0 0 0-4.307 4.309 4.318 4.318 0 0 0 4.307 4.308 4.32 4.32 0 0 0 4.308-4.308 4.32 4.32 0 0 0-4.308-4.309zm0 1.398a2.9 2.9 0 0 1 2.91 2.91 2.9 2.9 0 0 1-2.91 2.91 2.898 2.898 0 0 1-2.908-2.91 2.898 2.898 0 0 1 2.908-2.91zm18.367 1.897A4.499 4.499 0 0 0 64.22 54.7a4.497 4.497 0 0 0 4.486 4.486 4.499 4.499 0 0 0 4.488-4.486 4.5 4.5 0 0 0-4.488-4.488zm0 1.463A3.014 3.014 0 0 1 71.73 54.7a3.014 3.014 0 0 1-3.025 3.026A3.014 3.014 0 0 1 65.68 54.7a3.014 3.014 0 0 1 3.025-3.025zm-36.771 1.92c-4.85 0-8.813 3.963-8.813 8.812 0 4.85 3.963 8.81 8.813 8.81 4.849 0 8.812-3.96 8.812-8.81 0-4.85-3.963-8.812-8.812-8.812zm0 2.892a5.897 5.897 0 0 1 5.918 5.92 5.896 5.896 0 0 1-5.918 5.918 5.896 5.896 0 0 1-5.918-5.918 5.897 5.897 0 0 1 5.918-5.92zM15.896 71.621a3.051 3.051 0 0 0-3.044 3.045 3.051 3.051 0 0 0 3.044 3.045 3.05 3.05 0 0 0 3.043-3.045 3.05 3.05 0 0 0-3.043-3.045zm0 .764a2.275 2.275 0 0 1 2.282 2.281 2.275 2.275 0 0 1-2.282 2.281 2.275 2.275 0 0 1-2.28-2.281 2.275 2.275 0 0 1 2.28-2.281z'  stroke-width='1' stroke='none' fill='hsla(189, 71%, 58%, 1)'/><path d='M57.973.85a3.756 3.756 0 1 0 .067 7.512A3.756 3.756 0 0 0 57.973.85zM6.449 2.625a2.357 2.357 0 1 0 0 4.714 2.357 2.357 0 0 0 0-4.714Zm24.643 7.744a3.756 3.756 0 1 0 .067 7.512 3.756 3.756 0 0 0-.067-7.512zm-17.848 5.467a2.357 2.357 0 1 0 .175 4.71 2.357 2.357 0 0 0-.175-4.71zM-.25 23.363a2.136 2.136 0 1 0 0 4.274 2.136 2.136 0 1 0 0-4.274Zm75 0a2.136 2.136 0 1 0 0 4.274 2.136 2.136 0 1 0 0-4.274Zm-49.031 5.178a2.283 2.283 0 1 0 .054 4.566 2.283 2.283 0 0 0-.054-4.566zm30.404-1.512a1.473 1.473 0 1 0 0 2.946 1.473 1.473 0 0 0 0-2.946zm-9.525 9.088a2.578 2.578 0 1 0-.001 5.156 2.578 2.578 0 0 0 0-5.156zm-41.442.93a1.473 1.473 0 1 0-.003 2.946 1.473 1.473 0 0 0 .003-2.946zm62.455 3.314a1.473 1.473 0 1 0 .001 2.946 1.473 1.473 0 0 0 0-2.946zm-33.51 2.135a1.473 1.473 0 1 0-.003 2.946 1.473 1.473 0 0 0 .004-2.946ZM8.599 56.072a3.756 3.756 0 1 0 .067 7.512 3.756 3.756 0 0 0-.067-7.512zm40.49 7.658a2.357 2.357 0 1 0-.001 4.714 2.357 2.357 0 0 0 0-4.714zm22.129 5.833a2.136 2.136 0 1 0 .072 4.27 2.136 2.136 0 0 0-.072-4.27z'  stroke-width='1' stroke='none' fill='hsla(189, 64%, 53%, 1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 765px;
+  background: #ffffff;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.panel .logo-container {
+  text-align: center;
+  padding: 12px;
+}
+
+.panel .logo-container img {
+  height: 90px;
+}
+
+.accordion .accordion-item .accordion-header {
+  display: flex;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  color: #212529;
+  cursor: pointer;
+}
+
+.accordion .accordion-item .accordion-header .accordion-circle {
+  display: flex;
+  border-radius: 50%;
+  border: 3px solid #222;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 25px;
+  margin-right: 12px;
+  font-weight: bold;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.accordion .accordion-item .accordion-header .accordion-label {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 22px;
+}
+
+.accordion .accordion-item.disabled .accordion-header {
+  cursor: default;
+  color: #bebebe;
+}
+
+.accordion .accordion-item.disabled .accordion-header .accordion-circle {
+  border: 3px solid #bebebe;
+}
+
+.accordion .accordion-item .collapse {
+  display: grid;
+  position: relative;
+  background: #f0f0f0;
+  box-shadow: inset 0 8px 10px -8px rgb(166, 170, 180);
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  justify-items: center;
+  max-height: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.accordion .accordion-item.active .collapse {
+  padding: 25px 15px;
+  max-height: 500px;
+}
+
+.accordion .accordion-item.active .collapse::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: -24px;
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 50%);
+  width: 40px;
+  height: 40px;
+  z-index: 100;
+  transform: rotate(45deg);
+  box-shadow: 5px 5px 10px -5px rgb(166, 170, 180)
+}
+
+.option {
+  display: inline-block;
+  position: relative;
+  width: 130px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.option:hover,
+.option.active {
+  background: #dadada;
+}
+
+.option.active::after {
+  content: "✓";
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #036E00;
+  font-weight: bold;
+  color: #fff;
+}
+
+.option-image {
+  width: 100px;
+  height: 100px;
+  display: grid;
+  place-content: center;
+}
+
+.option-image img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  position: fixed;
+  left: 765px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  z-index: 0;
+}
+
+.preview {
+  width: 210px;
+  height: 468px;
+  transition: scale 200ms;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 25px 0 15px;
+}
+
+.buttons .button {
+  width: 45%;
+  padding: 0;
+  height: 80px;
+  border: 0;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 26px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.buttons .button.button-reset {
+  color: #6b6b6b;
+}
+
+.buttons .button.button-order {
+  border: 1px solid #f665b0;
+  background: #f665b0;
+  color: #fff;
+}
+
+.buttons .button:hover {
+  opacity: 0.75;
+}
+
+.buttons .button.button-order.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.buttons .button.button-reset:hover {
+  background: #e5e5e5;
+}
+
+
+@media (max-width: 1250px) {
+  .panel {
+    width: 60%;
+  }
+
+  .main {
+    left: 60%;
+  }
+}
+
+@media (max-width: 650px) {
+  .main .preview {
+    scale: 0.7;
+  }
+
+  .logo-container img {
+    width: 50% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-height: 750px) {
+  .accordion .accordion-item .accordion-header .accordion-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .accordion .accordion-item .accordion-header .accordion-label {
+    font-size: 16px;
+  }
+
+  .buttons .button {
+    width: 45%;
+    padding: 0;
+    height: 60px;
+    border: 0;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: lighter;
+    cursor: pointer;
+  }
+}
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: #212529;
+}
+
+.modal.open {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.modal-bg {
+  position: absolute;
+  background: rgba(0, 128, 128, 0.75);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-container {
+  border-radius: 10px;
+  background: #fff;
+  position: relative;
+  padding: 5px 30px 20px;
+  text-align: center;
+}
+
+.modal button {
+  color: #fff;
+  background: #008080;
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 6px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background: #119d9d;
+}
+
+.modal hr {
+  margin: 15px -30px;
+  border: 1px solid #f1efef;
+}
+
+.price-container {
+  margin-top: 20px;
+  color: #fff;
+  font-family: Verdana, sans-serif;
+  font-size: 22px;
+  text-align: center;
+}

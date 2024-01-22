@@ -1,21 +1,29 @@
 package pl.bubblenow.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import pl.bubblenow.models.Addition;
 import pl.bubblenow.repositories.AdditionRepository;
 
+import java.io.IOException;
 import java.util.List;
 
-@Service
-public class AdditionService {
-    private AdditionRepository additionRepository;
 
-    public AdditionService(AdditionRepository additionRepository) {
-        this.additionRepository = additionRepository;
-    }
+@Service
+@AllArgsConstructor
+public class AdditionService {
+    private final AdditionRepository additionRepository;
+    private final ImageService imageService;
 
     public List<Addition> searchAddition(String query) {
-        List<Addition> additions = additionRepository.searchAdditions(query);
-        return additions;
+        return additionRepository.searchAdditions(query);
+    }
+
+    public void uploadImage(Addition addition, MultipartFile image) throws IOException {
+
+        addition.setFilePath(imageService.uploadImage(image));
+
+        additionRepository.save(addition);
     }
 }

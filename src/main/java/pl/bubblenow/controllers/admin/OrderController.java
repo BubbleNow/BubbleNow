@@ -1,6 +1,7 @@
 package pl.bubblenow.controllers.admin;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,14 +11,11 @@ import pl.bubblenow.services.OrderService;
 
 @Controller
 @RequestMapping(path = "admin/orders")
+@AllArgsConstructor
 public class OrderController {
     private final OrderRepository orderRepository;
     private final OrderService orderService;
 
-    public OrderController(OrderRepository orderRepository, OrderService orderService) {
-        this.orderRepository = orderRepository;
-        this.orderService = orderService;
-    }
 
     @GetMapping(path = {"", "/"})
     public String orderIndex(Model model) {

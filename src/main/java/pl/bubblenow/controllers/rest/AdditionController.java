@@ -1,5 +1,6 @@
 package pl.bubblenow.controllers.rest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,15 +10,11 @@ import pl.bubblenow.services.AdditionService;
 
 @RestController("AdditionRestController")
 @RequestMapping(path = "/api/additions")
+@AllArgsConstructor
 public class AdditionController {
 
-    AdditionRepository additionRepository;
-    AdditionService additionService;
-
-    public AdditionController(AdditionRepository additionRepository, AdditionService additionService) {
-        this.additionRepository = additionRepository;
-        this.additionService = additionService;
-    }
+    private final AdditionRepository additionRepository;
+    private final AdditionService additionService;
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<?> index() {

@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class BubbleNowUserDetails implements UserDetails {
-    private User user;
+    private final User user;
 
     public BubbleNowUserDetails(User user) {
         super();
