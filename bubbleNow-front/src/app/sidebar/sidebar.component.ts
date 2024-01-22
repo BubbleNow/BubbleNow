@@ -20,16 +20,13 @@ export class SidebarComponent {
   public parent: AppComponent;
   public active: string;
   public canOrder: boolean;
-  public isPopupOpen: boolean = false;
-  public orderNumber: any;
-  public errorMessage: any;
+
 
   constructor(@Host() parent: AppComponent, private http: HttpClient) {
     this.parent = parent;
     this.active = 'milk';
     this.canOrder = false;
-    this.orderNumber = null;
-    this.errorMessage = null;
+
   }
 
   public setActive(ingredient: string) {
@@ -64,34 +61,12 @@ export class SidebarComponent {
       this.parent.selected[key] = null;
     }
     this.active = 'milk';
-    this.isPopupOpen = false;
+    this.parent.orderPopupComponent.isPopupOpen = false;
     this.canOrder = false;
-    this.orderNumber = null;
+    this.parent.orderPopupComponent.orderNumber = null;
     this.parent.previewComponent.price = 0;
-    this.errorMessage = null;
+    this.parent.orderPopupComponent.errorMessage = null;
   }
 
-  public sendOrder() {
-    this.isPopupOpen = true;
-    let orderData = this.parent.selected;
 
-    const body = {
-      addition: {id: orderData['addition']},
-      syrup: {id: orderData['syrup']},
-      milk: {id: orderData['milk']},
-      size: {id: orderData['size']},
-      kind: {id: orderData['kind']}
-    };
-
-    const url = 'http://localhost:8080/api/orders/create';
-
-    this.http.post(url, body).subscribe({
-      next: (response) => {
-        this.orderNumber = response;
-      },
-      error: (error: HttpErrorResponse) => {
-        this.errorMessage = error;
-      }
-    })
-  }
 }

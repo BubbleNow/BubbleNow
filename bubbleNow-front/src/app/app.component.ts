@@ -32,6 +32,8 @@ export class AppComponent implements OnInit{
   public sizes: Size[];
   public selected: SelectedIngredients;
   @ViewChild(PreviewComponent) previewComponent!: PreviewComponent;
+  @ViewChild(OrderPopupComponent) orderPopupComponent!: OrderPopupComponent;
+  @ViewChild(SidebarComponent) sidebarComponent!: SidebarComponent;
 
   constructor(private milkService: MilkService,
               private additionService: AdditionService,
